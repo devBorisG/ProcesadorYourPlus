@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DtoYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/DtoYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EntityYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceYourPlus/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +59,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "David",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/David/Documents/GitHub/ProcesadorYourPlus",
     "node.js.detected.package.eslint": "true",
@@ -82,7 +71,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.CrosscuttingYourPlusApplication">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
       <option name="appServicePlanName" />
