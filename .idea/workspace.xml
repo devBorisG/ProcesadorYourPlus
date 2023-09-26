@@ -4,17 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Use Case para la creacion del producto">
+      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/ProductoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/builder/producto/ProductoBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/builder/producto/ProductoDTOBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EntityYourPlus/src/main/java/com/uco/yourplus/entityyourplus/ProductoEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryYourPlus/src/main/java/com/uco/yourplus/repositoryyourplus/ProductoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/domain/ProductoDomain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/UseCaseFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/ActualizarProductoFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/EliminarProductoFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/RegistrarProductoFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/ActualizarProductoFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/EliminarProductoFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/RegistrarProductoFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/specification/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/UseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/ActualizarProducto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/EliminarProducto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/RegistrarProducto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/ActualizarProductoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/EliminarProductoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/RegistrarProductoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DtoYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/DtoYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EntityYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryYourPlus/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceYourPlus/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceYourPlus/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EntityYourPlus/src/main/java/com/uco/yourplus/entityyourplus/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryYourPlus/src/main/java/com/uco/yourplus/repositoryyourplus/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/package-info.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +63,15 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="master" />
   </component>
@@ -65,23 +94,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "David",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/David/Documents/GitHub/ProcesadorYourPlus",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "77f70198daa9a55c5d6e8b5cb21bcfd4",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;David&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/David/Documents/GitHub/YourPlusTeam/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/domain/PersonaDomain.java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;77f70198daa9a55c5d6e8b5cb21bcfd4&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
@@ -113,41 +146,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CrosscuttingYourPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ProcesadorYourPlus.CrosscuttingYourPlus.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uco.yourplus.crosscuttingyourplus.CrosscuttingYourPlusApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DtoYourPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ProcesadorYourPlus.DtoYourPlus.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uco.yourplus.dtoyourplus.DtoYourPlusApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EntityYourPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ProcesadorYourPlus.EntityYourPlus.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uco.yourplus.entityyourplus.EntityYourPlusApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RepositoryYourPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ProcesadorYourPlus.RepositoryYourPlus.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uco.yourplus.repositoryyourplus.RepositoryYourPlusApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceYourPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ProcesadorYourPlus.ServiceYourPlus.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uco.yourplus.serviceyourplus.ServiceYourPlusApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -162,6 +160,9 @@
       <workItem from="1695745310784" duration="317000" />
       <workItem from="1695745675697" duration="338000" />
       <workItem from="1695746106095" duration="652000" />
+      <workItem from="1695749346704" duration="1707000" />
+      <workItem from="1695751315064" duration="826000" />
+      <workItem from="1695765915919" duration="6267000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <option name="closed" value="true" />
@@ -171,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695743579130</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1695747111368</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695747111368</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +188,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Use Case para la creacion del producto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Use Case para la creacion del producto" />
   </component>
 </project>
