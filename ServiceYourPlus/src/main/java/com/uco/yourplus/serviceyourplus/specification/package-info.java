@@ -1,1 +1,0 @@
-package com.uco.yourplus.serviceyourplus.specification;
