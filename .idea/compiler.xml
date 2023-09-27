@@ -9,7 +9,6 @@
         </processorPath>
         <module name="ProcesadorYourPlus.ServiceYourPlus.main" />
         <module name="ProcesadorYourPlus.EntityYourPlus.main" />
-        <module name="ProcesadorYourPlus.RepositoryYourPlus.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
