@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Use Case para la creacion del producto">
-      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/ProductoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/builder/producto/ProductoBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DtoYourPlus/src/main/java/com/uco/yourplus/dtoyourplus/builder/producto/ProductoDTOBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EntityYourPlus/src/main/java/com/uco/yourplus/entityyourplus/ProductoEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryYourPlus/src/main/java/com/uco/yourplus/repositoryyourplus/ProductoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/domain/ProductoDomain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/UseCaseFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/ActualizarProductoFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/EliminarProductoFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/RegistrarProductoFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/ActualizarProductoFacadeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/EliminarProductoFacadeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/facade/producto/implementation/RegistrarProductoFacadeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/specification/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/UseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/ActualizarProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/EliminarProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/RegistrarProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/ActualizarProductoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/EliminarProductoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/usecase/producto/implementation/RegistrarProductoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityYourPlus/src/main/java/com/uco/yourplus/entityyourplus/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryYourPlus/src/main/java/com/uco/yourplus/repositoryyourplus/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/package-info.java" beforeDir="false" />
-    </list>
+    <list default="true" id="17ba7796-c825-4292-9a3f-747d245a13d9" name="Changes" comment="Use Case para la creacion del producto" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="David" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,27 +63,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;David&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/David/Documents/GitHub/YourPlusTeam/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/domain/PersonaDomain.java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;77f70198daa9a55c5d6e8b5cb21bcfd4&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/David/Documents/GitHub/YourPlusTeam/ServiceYourPlus/src/main/java/com/uco/yourplus/serviceyourplus/domain/PersonaDomain.java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "spring.configuration.checksum": "77f70198daa9a55c5d6e8b5cb21bcfd4",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
