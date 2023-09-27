@@ -2,6 +2,7 @@ package com.uco.yourplus.serviceyourplus.facade.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.dtoyourplus.ProductoDTO;
+import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.facade.producto.ActualizarProductoFacade;
 import com.uco.yourplus.serviceyourplus.usecase.producto.ActualizarProducto;
@@ -15,7 +16,6 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class ActualizarProductoFacadeImpl implements ActualizarProductoFacade {
-
     private ActualizarProducto useCase;
 
     @Autowired
