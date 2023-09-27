@@ -5,6 +5,7 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.entityyourplus.ProductoEntity;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
+import com.uco.yourplus.serviceyourplus.specification.producto.RegistrarProductoSpecification;
 import com.uco.yourplus.serviceyourplus.usecase.producto.RegistrarProducto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,19 @@ import org.springframework.stereotype.Service;
 public class RegistrarProductoImpl implements RegistrarProducto {
 
     private ProductoRepository repository;
+    private RegistrarProductoSpecification specification;
 
     @Autowired
-    public RegistrarProductoImpl(ProductoRepository repository){
+    public RegistrarProductoImpl(ProductoRepository repository, RegistrarProductoSpecification specification){
         this.repository = repository;
+        this.specification = specification;
     }
 
     @Override
     public void execute(ProductoDomain domain) {
+        ProductoEntity productoEntity = new ProductoEntity();
         try {
-            ProductoEntity productoEntity = new ProductoEntity();
+            specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
             repository.save(productoEntity);
         }catch (ServiceCustomException exception){

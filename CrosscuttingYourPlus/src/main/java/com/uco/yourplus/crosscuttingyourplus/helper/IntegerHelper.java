@@ -1,5 +1,6 @@
 package com.uco.yourplus.crosscuttingyourplus.helper;
 
+
 import static com.uco.yourplus.crosscuttingyourplus.helper.ObjectHelper.getDefaultIfNull;
 
 public class IntegerHelper {
@@ -22,5 +23,9 @@ public class IntegerHelper {
      */
     public static int getDefaultInteger(int value){
         return getDefaultIfNull(value,ZERO);
+    }
+
+    public static boolean isDefaultInteger(int value){
+        return value == ZERO;
     }
 }
