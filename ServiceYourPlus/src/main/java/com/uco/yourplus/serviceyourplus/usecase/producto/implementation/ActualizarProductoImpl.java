@@ -5,37 +5,32 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.entityyourplus.ProductoEntity;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
+import com.uco.yourplus.serviceyourplus.specification.producto.ActualizarProductoSpecification;
 import com.uco.yourplus.serviceyourplus.usecase.producto.ActualizarProducto;
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ActualizarProductoImpl implements ActualizarProducto {
 
-    private ProductoRepository repository;
+    private final ProductoRepository repository;
+    private final ActualizarProductoSpecification specification;
 
     @Autowired
-    public ActualizarProductoImpl(ProductoRepository repository){
+    public ActualizarProductoImpl(ProductoRepository repository, ActualizarProductoSpecification specification ){
         this.repository = repository;
+        this.specification = specification;
     }
 
     @Override
     public void execute(ProductoDomain domain) {
         ProductoEntity productoEntity = new ProductoEntity();
         try{
-            //TODO: verificar que el nombre del producto no exista en la base de datos y la integridad de los datos
-            //TODO: Quitar la consulta y poner en el specification
-            Optional<ProductoEntity> query = repository.findById(domain.getId());
-            if (query.isPresent()){
-                BeanUtils.copyProperties(domain, productoEntity);
-                repository.save(productoEntity);
-            }else{
-                throw ServiceCustomException.createUserException("El producto que deseas actualizar no existe");
-            }
+            specification.isSatisfied(domain);
+            BeanUtils.copyProperties(domain, productoEntity);
+            repository.save(productoEntity);
         }catch (ServiceCustomException exception){
             throw exception;
         }catch (RepositoryCustomException exception){

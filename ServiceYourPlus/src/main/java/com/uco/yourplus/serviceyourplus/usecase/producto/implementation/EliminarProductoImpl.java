@@ -5,6 +5,7 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.entityyourplus.ProductoEntity;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
+import com.uco.yourplus.serviceyourplus.specification.producto.EliminarProductoSpecification;
 import com.uco.yourplus.serviceyourplus.usecase.producto.EliminarProducto;
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.BeanUtils;
@@ -14,18 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class EliminarProductoImpl implements EliminarProducto {
 
-    private ProductoRepository repository;
+    private final ProductoRepository repository;
+    private final EliminarProductoSpecification specification;
 
     @Autowired
-    public EliminarProductoImpl(ProductoRepository repository){
+    public EliminarProductoImpl(ProductoRepository repository, EliminarProductoSpecification specification){
         this.repository = repository;
+        this.specification = specification;
     }
 
     @Override
     public void execute(ProductoDomain domain) {
+        ProductoEntity productoEntity = new ProductoEntity();
         try{
-            //TODO: Crear specification para determinar si el producto existe
-            ProductoEntity productoEntity = new ProductoEntity();
+            specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
             repository.delete(productoEntity);
         }catch (ServiceCustomException exception){
@@ -34,8 +37,7 @@ public class EliminarProductoImpl implements EliminarProducto {
             throw ServiceCustomException.createTechnicalException(exception,"Ocurrio un error utilizando JPA");
         }catch (BeanInstantiationException exception){
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error mapeando el obejto de domain a entity");
-        }
-        catch (Exception exception){
+        }catch (Exception exception){
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado");
         }
     }

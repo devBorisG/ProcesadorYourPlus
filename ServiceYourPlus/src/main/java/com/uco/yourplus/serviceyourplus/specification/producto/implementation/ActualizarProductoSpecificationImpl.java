@@ -1,24 +1,24 @@
 package com.uco.yourplus.serviceyourplus.specification.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
-
-import static com.uco.yourplus.crosscuttingyourplus.helper.ObjectHelper.isNull;
-import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.isDefaultUUID;
-import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isEmpty;
-import static com.uco.yourplus.crosscuttingyourplus.helper.IntegerHelper.isDefaultInteger;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
-import com.uco.yourplus.serviceyourplus.specification.producto.RegistrarProductoSpecification;
+import com.uco.yourplus.serviceyourplus.specification.producto.ActualizarProductoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.uco.yourplus.crosscuttingyourplus.helper.IntegerHelper.isDefaultInteger;
+import static com.uco.yourplus.crosscuttingyourplus.helper.ObjectHelper.isNull;
+import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isEmpty;
+import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.isDefaultUUID;
+
 @Service
-public class RegistrarProductoSpecificationImpl implements RegistrarProductoSpecification {
+public class ActualizarProductoSpecificationImpl implements ActualizarProductoSpecification {
 
     private final ProductoRepository repository;
 
     @Autowired
-    public RegistrarProductoSpecificationImpl(ProductoRepository repository){
+    public ActualizarProductoSpecificationImpl(ProductoRepository repository){
         this.repository = repository;
     }
 
@@ -29,29 +29,29 @@ public class RegistrarProductoSpecificationImpl implements RegistrarProductoSpec
         verifyCategoryIntegrirty();
     }
 
-    private void verifyProductIntegrity(ProductoDomain domain){
-        //Que no sea nulo
+    private void verifyProductIntegrity(ProductoDomain domain) {
+        //Que el objeto no venga nulo
         if (isNull(domain)){
-            throw ServiceCustomException.createUserException("No estas enviando ningun producto");
+            throw ServiceCustomException.createUserException("No se esta recibiendo ningun producto");
         }
-        //Que no exista el producto
-        if (repository.findById(domain.getId()).isPresent()){
-            throw ServiceCustomException.createUserException("El producto ya existe");
+        //Que el producto exista en la base de datos
+        if (repository.findById(domain.getId()).isEmpty()){
+            throw ServiceCustomException.createUserException("El producto que desea actualizar no existe");
         }
-        //Que los atributos que son obligatorios esten presentes (todos)
+        //Que el nombre no exista en la base de datos
+        if (repository.findAll().stream().filter(entidad -> domain.getNombre()
+                        .equals(entidad.getNombre()))
+                        .findFirst()
+                        .isPresent()){
+            throw ServiceCustomException.createUserException("Este nombre ya existe, intente nuevamente");
+        }
+        //Que todos los datos esten presentes
         if (verifyObligatoryAttributes(domain)){
             throw ServiceCustomException.createUserException("Algunos datos del producto estan vacios");
         }
         //Que el precio no sea negativo
         if (domain.getPrecio()<0){
             throw ServiceCustomException.createUserException("El precio no puede ser negativo");
-        }
-        //Que el nombre del producto no exista
-        if (repository.findAll().stream().filter(entidad -> domain.getNombre()
-                .equals(entidad.getNombre()))
-                .findFirst()
-                .isPresent()){
-            throw ServiceCustomException.createUserException("El nombre del producto ya existe");
         }
     }
 
