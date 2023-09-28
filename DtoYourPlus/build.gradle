@@ -17,7 +17,12 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation project(':CrosscuttingYourPlus')
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.0'
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.3-1'
 }
 
 tasks.named('test') {
