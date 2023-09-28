@@ -18,6 +18,7 @@ import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isOnlyWo
 import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.isDefaultUUID;
 import static com.uco.yourplus.dtoyourplus.builder.laboratorio.LaboratorioDTOBuilder.getLaboratorioDTOBuilder;
 
+
 @Service
 public class LaboratorioSpecification implements LaboratorioDeleteSpecification {
 
