@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Producto")
+@Table(name = "Producto",schema = "public")
 public class ProductoEntity {
     //TODO: agregar los atributos de laboratorio y categoria
     @Id
