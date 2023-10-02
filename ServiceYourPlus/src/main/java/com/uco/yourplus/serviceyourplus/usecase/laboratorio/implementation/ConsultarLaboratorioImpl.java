@@ -1,6 +1,5 @@
 package com.uco.yourplus.serviceyourplus.usecase.laboratorio.implementation;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.LaboratorioEntity;

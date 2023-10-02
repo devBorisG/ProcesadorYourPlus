@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface LaboratorioRepository extends JpaRepository<LaboratorioEntity, UUID>,LaboratorioRepositoryCustom {
-    Optional<LaboratorioEntity> findById (UUID id);
+
 }

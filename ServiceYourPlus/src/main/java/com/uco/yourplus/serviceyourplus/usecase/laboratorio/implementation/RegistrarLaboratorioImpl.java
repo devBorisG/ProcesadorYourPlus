@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class RegistrarLaboratorioImpl implements RegistrarLaboratorio {
 
     @Autowired
-    LaboratorioRepository laboratorioRepository;
+    private LaboratorioRepository laboratorioRepository;
 
     @Autowired
-    Specification specification;
+    private Specification specification;
 
 
     @Override

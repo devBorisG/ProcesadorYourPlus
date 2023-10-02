@@ -4,14 +4,13 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
 import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
-import com.uco.yourplus.serviceyourplus.specification.laboratorio.LaboratorioDeleteSpecification;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
+
 
 import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isEmpty;
 import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isOnlyWordsAndSpace;
@@ -20,7 +19,7 @@ import static com.uco.yourplus.dtoyourplus.builder.laboratorio.LaboratorioDTOBui
 
 
 @Service
-public class LaboratorioSpecification implements LaboratorioDeleteSpecification {
+public class LaboratorioSpecification implements com.uco.yourplus.serviceyourplus.specification.laboratorio.LaboratorioSpecification {
 
     @Autowired
     LaboratorioRepository laboratorioRepository;

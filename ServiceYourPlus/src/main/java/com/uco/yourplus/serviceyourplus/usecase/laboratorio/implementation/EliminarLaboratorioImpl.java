@@ -7,7 +7,6 @@ import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.EliminarLaboratorio;
-import org.hibernate.loader.collection.OneToManyJoinWalker;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
