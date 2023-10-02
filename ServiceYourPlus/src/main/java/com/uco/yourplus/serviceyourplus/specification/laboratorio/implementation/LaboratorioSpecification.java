@@ -24,6 +24,7 @@ public class LaboratorioSpecification implements SpecificationLaboratorio {
 
     @Autowired
     LaboratorioRepository laboratorioRepository;
+
     @Autowired
     ConsultarLaboratorio consultarLaboratorio;
     @Override
