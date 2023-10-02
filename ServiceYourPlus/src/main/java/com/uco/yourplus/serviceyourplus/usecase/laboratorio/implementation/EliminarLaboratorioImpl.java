@@ -5,7 +5,6 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.entityyourplus.LaboratorioEntity;
 import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
-import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.EliminarLaboratorio;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
