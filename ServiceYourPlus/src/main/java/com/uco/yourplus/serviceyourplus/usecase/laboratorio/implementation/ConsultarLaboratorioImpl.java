@@ -1,5 +1,6 @@
 package com.uco.yourplus.serviceyourplus.usecase.laboratorio.implementation;
 
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.LaboratorioEntity;
@@ -8,12 +9,11 @@ import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@Service
+
 public class ConsultarLaboratorioImpl implements ConsultarLaboratorio {
 
     @Autowired
