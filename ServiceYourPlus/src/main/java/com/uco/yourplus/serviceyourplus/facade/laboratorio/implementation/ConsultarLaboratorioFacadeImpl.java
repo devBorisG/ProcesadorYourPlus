@@ -3,7 +3,6 @@ package com.uco.yourplus.serviceyourplus.facade.laboratorio.implementation;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.crosscuttingyourplus.helper.StringHelper;
 import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
-import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.facade.laboratorio.ConsultarLaboratorioFacade;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
