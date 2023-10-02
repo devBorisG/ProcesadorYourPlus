@@ -20,6 +20,7 @@ public class ConsultarLaboratorioFacadeImpl implements ConsultarLaboratorioFacad
     private ConsultarLaboratorio consultarLaboratorio;
     @Override
     public List<LaboratorioDTO> execute(Optional<LaboratorioDTO> dto) {
+
         try {
             List<LaboratorioDomain> laboratorioDomains;
             if (dto.isPresent()&&(!Objects.equals(dto.get().getNombre(), StringHelper.EMPTY))) {
