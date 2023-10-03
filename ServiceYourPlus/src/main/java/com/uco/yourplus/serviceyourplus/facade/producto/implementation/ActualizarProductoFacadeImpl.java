@@ -15,8 +15,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class ActualizarProductoFacadeImpl implements ActualizarProductoFacade {
-
-    private ActualizarProducto useCase;
+    private final ActualizarProducto useCase;
 
     @Autowired
     public ActualizarProductoFacadeImpl(ActualizarProducto useCase){

@@ -3,6 +3,7 @@ package com.uco.yourplus.entityyourplus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,13 +14,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Producto",schema = "public")
-public class ProductoEntity {
-    //TODO: agregar los atributos de laboratorio y categoria
+@Table(name = "Laboratorio", schema="public")
+public class LaboratorioEntity  {
+
     @Id
-    UUID id;
-    String nombre;
-    int precio;
-    String descripcion;
-    String imagen;
+    private UUID id;
+    private String nombre;
+    private String descripcion;
+
 }
