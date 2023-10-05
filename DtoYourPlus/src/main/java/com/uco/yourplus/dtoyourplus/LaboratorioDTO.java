@@ -27,9 +27,6 @@ public class LaboratorioDTO {
         return new LaboratorioDTO(id,nombre,descripcion);
     }
 
-    public static LaboratorioDTO create(final UUID id){
-        return new LaboratorioDTO(id, EMPTY,EMPTY);
-    }
 
     public UUID getId() {
         return id;

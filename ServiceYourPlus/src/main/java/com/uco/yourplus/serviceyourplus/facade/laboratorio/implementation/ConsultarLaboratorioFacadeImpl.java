@@ -3,23 +3,24 @@ package com.uco.yourplus.serviceyourplus.facade.laboratorio.implementation;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.crosscuttingyourplus.helper.StringHelper;
 import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
-import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.facade.laboratorio.ConsultarLaboratorioFacade;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
+@Service
 public class ConsultarLaboratorioFacadeImpl implements ConsultarLaboratorioFacade {
     @Autowired
     private ConsultarLaboratorio consultarLaboratorio;
     @Override
     public List<LaboratorioDTO> execute(Optional<LaboratorioDTO> dto) {
+
         try {
             List<LaboratorioDomain> laboratorioDomains;
             if (dto.isPresent()&&(!Objects.equals(dto.get().getNombre(), StringHelper.EMPTY))) {

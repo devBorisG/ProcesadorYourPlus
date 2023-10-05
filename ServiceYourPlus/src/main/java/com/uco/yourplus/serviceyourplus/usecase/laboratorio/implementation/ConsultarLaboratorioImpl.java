@@ -1,5 +1,6 @@
 package com.uco.yourplus.serviceyourplus.usecase.laboratorio.implementation;
 
+
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.LaboratorioEntity;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class ConsultarLaboratorioImpl implements ConsultarLaboratorio {
 
