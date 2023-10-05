@@ -9,14 +9,16 @@ import com.uco.yourplus.serviceyourplus.specification.Specification;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.RegistrarLaboratorio;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegistrarLaboratorioImpl implements RegistrarLaboratorio {
 
     @Autowired
-    LaboratorioRepository laboratorioRepository;
+    private LaboratorioRepository laboratorioRepository;
 
     @Autowired
-    Specification specification;
+    private Specification specification;
 
 
     @Override
