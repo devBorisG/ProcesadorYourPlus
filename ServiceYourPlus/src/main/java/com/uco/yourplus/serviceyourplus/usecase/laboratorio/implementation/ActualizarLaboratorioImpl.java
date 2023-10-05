@@ -17,8 +17,13 @@ import java.util.UUID;
 @Service
 public class ActualizarLaboratorioImpl implements ActualizarLaboratorio {
 
+
+    private final LaboratorioRepository laboratorioRepository;
     @Autowired
-    private LaboratorioRepository laboratorioRepository;
+    public ActualizarLaboratorioImpl(LaboratorioRepository laboratorioRepository) {
+        this.laboratorioRepository = laboratorioRepository;
+    }
+
     @Override
     public void execute(UUID id, LaboratorioDomain patch) {
         try {

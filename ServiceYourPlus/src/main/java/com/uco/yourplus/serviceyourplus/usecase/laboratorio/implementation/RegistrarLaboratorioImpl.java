@@ -14,21 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegistrarLaboratorioImpl implements RegistrarLaboratorio {
 
-    @Autowired
-    private LaboratorioRepository laboratorioRepository;
+    private  final LaboratorioRepository laboratorioRepository;
 
+
+    private final Specification<LaboratorioDomain> specification;
     @Autowired
-    private Specification specification;
+    public RegistrarLaboratorioImpl(LaboratorioRepository laboratorioRepository, Specification<LaboratorioDomain> specification) {
+        this.laboratorioRepository = laboratorioRepository;
+        this.specification = specification;
+    }
 
 
     @Override
-    public String execute(LaboratorioDomain domain) {
+    public void execute(LaboratorioDomain domain) {
         try {
             specification.isSatisfied(domain);
             LaboratorioEntity laboratorioEntity = new LaboratorioEntity();
             BeanUtils.copyProperties(domain, laboratorioEntity);
             laboratorioRepository.save(laboratorioEntity);
-            return ("Registro de el Laboratorio fue exitoso");
+
         } catch (ServiceCustomException exception) {
             throw exception;
         } catch (RepositoryCustomException exception) {

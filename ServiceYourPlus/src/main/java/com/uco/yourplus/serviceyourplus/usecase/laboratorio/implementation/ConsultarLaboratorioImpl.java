@@ -17,8 +17,13 @@ import java.util.Optional;
 @Service
 public class ConsultarLaboratorioImpl implements ConsultarLaboratorio {
 
+
+    private final LaboratorioRepository laboratorioRepository;
     @Autowired
-    private LaboratorioRepository laboratorioRepository;
+    public ConsultarLaboratorioImpl(LaboratorioRepository laboratorioRepository) {
+        this.laboratorioRepository = laboratorioRepository;
+    }
+
     @Override
     public List<LaboratorioDomain> execute(Optional<LaboratorioDomain> domain) {
         List<LaboratorioEntity> laboratorioEntities;

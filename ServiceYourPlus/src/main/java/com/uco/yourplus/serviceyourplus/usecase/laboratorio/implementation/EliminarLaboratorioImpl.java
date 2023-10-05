@@ -8,18 +8,21 @@ import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.EliminarLaboratorio;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class EliminarLaboratorioImpl implements EliminarLaboratorio {
-    @Autowired
-    private LaboratorioRepository laboratorioRepository;
 
-    @Autowired
-    private ConsultarLaboratorio consultarLaboratorio;
+    private  final LaboratorioRepository laboratorioRepository;
+
+    private  final ConsultarLaboratorio consultarLaboratorio;
+
+    public EliminarLaboratorioImpl(LaboratorioRepository laboratorioRepository, ConsultarLaboratorio consultarLaboratorio) {
+        this.laboratorioRepository = laboratorioRepository;
+        this.consultarLaboratorio = consultarLaboratorio;
+    }
 
 
     @Override
