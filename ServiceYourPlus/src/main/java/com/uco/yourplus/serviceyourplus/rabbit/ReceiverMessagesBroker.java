@@ -18,8 +18,9 @@ public class ReceiverMessagesBroker {
         this.mapperJsonObjeto = mapperJsonObjeto;
     }
 
-    @RabbitListener(queues = "${producto.procesar.queue-name}")
-    public void receiverMessagesProcessClient(String message){
+    @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
+    public void receiverMessagesProcessClient(String message) {
+//        ProductoDomain productoDomain = objectMapper.readValue(message, ProductoDomain.class)
         System.out.println(message);
     }
 }
