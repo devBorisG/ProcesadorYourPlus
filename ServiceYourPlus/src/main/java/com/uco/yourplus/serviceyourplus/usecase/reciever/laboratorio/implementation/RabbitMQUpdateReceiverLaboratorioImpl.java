@@ -6,6 +6,7 @@ import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.EliminarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.reciever.laboratorio.RabbitMQUpdateReceiverLaboratorio;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,7 @@ public class RabbitMQUpdateReceiverLaboratorioImpl implements RabbitMQUpdateRece
         this.useCase = useCase;
     }
 
+    @RabbitListener(queues = "${}")
     @Override
     public void execute(LaboratorioDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;

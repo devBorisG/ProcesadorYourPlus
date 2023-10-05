@@ -6,6 +6,7 @@ import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.reciever.laboratorio.RabbitMQListReceiverLaboratorio;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class RabbitMQListReceiverLaboratorioImpl implements RabbitMQListReceiver
         this.useCase = useCase;
     }
 
+    @RabbitListener(queues = "${}")
     @Override
     public void execute(LaboratorioDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
