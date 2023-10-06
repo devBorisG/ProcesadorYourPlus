@@ -1,7 +1,6 @@
 package com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
-import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.producto.RegistrarProducto;
@@ -20,11 +19,11 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
     @Override
-    public void execute(ProductoDomain domain) {
+    public void execute(String domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
         ResponseDomain responseDomain = new ResponseDomain();
         try {
-            useCase.execute(domain);
+//            useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto registrado con éxito");
         }catch (ServiceCustomException exception){

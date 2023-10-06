@@ -20,7 +20,7 @@ public class RabbitMQListReceiverLaboratorioImpl implements RabbitMQListReceiver
         this.useCase = useCase;
     }
 
-    @RabbitListener(queues = "${}")
+//    @RabbitListener(queues = "${}")
     @Override
     public void execute(LaboratorioDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
