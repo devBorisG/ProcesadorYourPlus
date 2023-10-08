@@ -4,16 +4,16 @@ import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
 
 import java.util.UUID;
 
-public class LaboratorioDTOBuilder implements LaboratorioBuilder{
+public class LaboratorioDTOBuilder implements LaboratorioBuilder {
     private UUID id;
     private String nombre;
     private String descripcion;
 
-    private LaboratorioDTOBuilder(){
+    private LaboratorioDTOBuilder() {
         super();
     }
 
-    public static LaboratorioDTOBuilder getLaboratorioDTOBuilder(){
+    public static LaboratorioDTOBuilder getLaboratorioDTOBuilder() {
         return new LaboratorioDTOBuilder();
     }
 

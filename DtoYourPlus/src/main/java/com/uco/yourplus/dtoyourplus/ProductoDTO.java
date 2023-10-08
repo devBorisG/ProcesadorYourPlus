@@ -19,7 +19,7 @@ public class ProductoDTO {
 
     //TODO: crear los atributos de laboratorio y categoria
 
-    public ProductoDTO(){
+    public ProductoDTO() {
         setId(getNewUUID());
         setNombre(EMPTY);
         setPrecio(ZERO);
@@ -28,7 +28,7 @@ public class ProductoDTO {
         //TODO: Agregar el laboratorio y categoria al constructor
     }
 
-    public ProductoDTO(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen){
+    public ProductoDTO(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen) {
         setId(id);
         setNombre(nombre);
         setPrecio(precio);
@@ -37,12 +37,12 @@ public class ProductoDTO {
         //TODO: Agregar el laboratorio y categoria al constructor
     }
 
-    public static ProductoDTO create(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen){
+    public static ProductoDTO create(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen) {
         //TODO: Agregar los objetos de laboratorio y categoria
         return new ProductoDTO(id, nombre, precio, descripcion, imagen);
     }
 
-    public static ProductoDTO create(final UUID id){
+    public static ProductoDTO create(final UUID id) {
         //TODO: Agregar los objetos de laboratorio y categoria
         return new ProductoDTO(id, EMPTY, ZERO, EMPTY, EMPTY);
     }

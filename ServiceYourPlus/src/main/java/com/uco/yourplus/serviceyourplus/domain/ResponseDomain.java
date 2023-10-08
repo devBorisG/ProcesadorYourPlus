@@ -24,7 +24,7 @@ public class ResponseDomain<T> {
         setStateResponse(StateResponse.ERROR);
     }
 
-    public ResponseDomain(UUID id,StateResponse stateResponse, String message, List<T> data) {
+    public ResponseDomain(UUID id, StateResponse stateResponse, String message, List<T> data) {
         super();
         setId(id);
         setData(data);
@@ -37,7 +37,7 @@ public class ResponseDomain<T> {
     }
 
     public void setStateResponse(StateResponse stateResponse) {
-        this.stateResponse = ObjectHelper.getDefaultIfNull(stateResponse,StateResponse.ERROR);
+        this.stateResponse = ObjectHelper.getDefaultIfNull(stateResponse, StateResponse.ERROR);
     }
 
     public String getMessage() {

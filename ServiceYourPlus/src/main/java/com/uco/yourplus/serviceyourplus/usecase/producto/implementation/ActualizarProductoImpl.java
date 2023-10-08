@@ -19,7 +19,7 @@ public class ActualizarProductoImpl implements ActualizarProducto {
     private final ActualizarProductoSpecification specification;
 
     @Autowired
-    public ActualizarProductoImpl(ProductoRepository repository, ActualizarProductoSpecification specification ){
+    public ActualizarProductoImpl(ProductoRepository repository, ActualizarProductoSpecification specification) {
         this.repository = repository;
         this.specification = specification;
     }
@@ -27,17 +27,17 @@ public class ActualizarProductoImpl implements ActualizarProducto {
     @Override
     public void execute(ProductoDomain domain) {
         ProductoEntity productoEntity = new ProductoEntity();
-        try{
+        try {
             specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
             repository.save(productoEntity);
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             throw exception;
-        }catch (RepositoryCustomException exception){
+        } catch (RepositoryCustomException exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error accediendo a JPA");
-        }catch (BeanInstantiationException exception){
+        } catch (BeanInstantiationException exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error mapeando el producto de domain a entity");
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado");
         }
     }

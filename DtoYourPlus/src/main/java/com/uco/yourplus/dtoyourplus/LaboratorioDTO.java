@@ -11,20 +11,20 @@ public class LaboratorioDTO {
     private String nombre;
     private String descripcion;
 
-    public LaboratorioDTO(){
+    public LaboratorioDTO() {
         setId(id);
-        setNombre( EMPTY);
+        setNombre(EMPTY);
         setDescripcion(EMPTY);
     }
 
-    public LaboratorioDTO(final UUID id, final String nombre, final String descripcion){
+    public LaboratorioDTO(final UUID id, final String nombre, final String descripcion) {
         setId(id);
         setNombre(nombre);
         setDescripcion(descripcion);
     }
 
-    public static LaboratorioDTO create(final UUID id, final String nombre, final String descripcion){
-        return new LaboratorioDTO(id,nombre,descripcion);
+    public static LaboratorioDTO create(final UUID id, final String nombre, final String descripcion) {
+        return new LaboratorioDTO(id, nombre, descripcion);
     }
 
 

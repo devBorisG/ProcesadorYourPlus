@@ -12,7 +12,31 @@ public class ProductoPropertiesCatalogProducer {
 
     private RoutingKeyProperties routingkey = new RoutingKeyProperties();
 
-    public static class QueueProperties{
+    public String getExchange() {
+        return exchange;
+    }
+
+    public void setExchange(String exchange) {
+        this.exchange = exchange;
+    }
+
+    public QueueProperties getQueue() {
+        return queue;
+    }
+
+    public void setQueue(QueueProperties queue) {
+        this.queue = queue;
+    }
+
+    public RoutingKeyProperties getRoutingkey() {
+        return routingkey;
+    }
+
+    public void setRoutingkey(RoutingKeyProperties routingkey) {
+        this.routingkey = routingkey;
+    }
+
+    public static class QueueProperties {
         private String save;
         private String delete;
         private String update;
@@ -88,29 +112,5 @@ public class ProductoPropertiesCatalogProducer {
         public void setList(String list) {
             this.list = list;
         }
-    }
-
-    public String getExchange() {
-        return exchange;
-    }
-
-    public void setExchange(String exchange) {
-        this.exchange = exchange;
-    }
-
-    public QueueProperties getQueue() {
-        return queue;
-    }
-
-    public void setQueue(QueueProperties queue) {
-        this.queue = queue;
-    }
-
-    public RoutingKeyProperties getRoutingkey() {
-        return routingkey;
-    }
-
-    public void setRoutingkey(RoutingKeyProperties routingkey) {
-        this.routingkey = routingkey;
     }
 }

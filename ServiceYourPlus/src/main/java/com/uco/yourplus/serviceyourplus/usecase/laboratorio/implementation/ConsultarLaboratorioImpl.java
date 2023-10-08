@@ -14,31 +14,33 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ConsultarLaboratorioImpl implements ConsultarLaboratorio {
 
     @Autowired
     private LaboratorioRepository laboratorioRepository;
+
     @Override
     public List<LaboratorioDomain> execute(Optional<LaboratorioDomain> domain) {
         List<LaboratorioEntity> laboratorioEntities;
         List<LaboratorioDomain> laboratorioDomains = new ArrayList<>();
-        if (domain.isPresent()){
+        if (domain.isPresent()) {
             LaboratorioEntity laboratorioEntity = new LaboratorioEntity();
             BeanUtils.copyProperties(domain.get(), laboratorioEntity);
             try {
                 laboratorioEntities = laboratorioRepository.findCustom(laboratorioEntity);
-            }catch (RepositoryCustomException e){
+            } catch (RepositoryCustomException e) {
                 throw ServiceCustomException.createTechnicalException(e, "no funca x2");
             }
-        }else{
+        } else {
             try {
                 laboratorioEntities = laboratorioRepository.findAll();
-            }catch (RepositoryCustomException e){
+            } catch (RepositoryCustomException e) {
                 throw ServiceCustomException.createTechnicalException(e, "no funca x2");
             }
         }
-        laboratorioEntities.forEach(value ->{
+        laboratorioEntities.forEach(value -> {
             LaboratorioDomain laboratorioDomain = new LaboratorioDomain();
             BeanUtils.copyProperties(value, laboratorioDomain);
             laboratorioDomains.add(laboratorioDomain);

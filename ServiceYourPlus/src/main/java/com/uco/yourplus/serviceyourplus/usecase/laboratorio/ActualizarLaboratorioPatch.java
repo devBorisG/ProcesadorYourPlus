@@ -12,5 +12,5 @@ import com.uco.yourplus.serviceyourplus.usecase.UseCasePatch;
  *
  * @see UseCasePatch
  */
-public interface ActualizarLaboratorioPatch /*extends UseCasePatch<JsonPatch> */{
+public interface ActualizarLaboratorioPatch /*extends UseCasePatch<JsonPatch> */ {
 }

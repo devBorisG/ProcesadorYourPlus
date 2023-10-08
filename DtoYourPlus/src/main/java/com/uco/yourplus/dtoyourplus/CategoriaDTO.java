@@ -12,24 +12,24 @@ public class CategoriaDTO {
     private String nombre;
     private String descripcion;
 
-    public CategoriaDTO(){
+    public CategoriaDTO() {
         setId(id);
         setNombre(EMPTY);
         setDescripcion(EMPTY);
     }
 
-    public CategoriaDTO(final UUID id, final String nombre, final String descripcion){
+    public CategoriaDTO(final UUID id, final String nombre, final String descripcion) {
         setId(id);
         setNombre(nombre);
         setDescripcion(descripcion);
     }
 
-    public static CategoriaDTO create(final UUID id, final String nombre, final String descripcion){
-        return new CategoriaDTO(id,nombre,descripcion);
+    public static CategoriaDTO create(final UUID id, final String nombre, final String descripcion) {
+        return new CategoriaDTO(id, nombre, descripcion);
     }
 
-    public static CategoriaDTO create(final UUID id){
-        return new CategoriaDTO(id,EMPTY,EMPTY);
+    public static CategoriaDTO create(final UUID id) {
+        return new CategoriaDTO(id, EMPTY, EMPTY);
     }
 
     public UUID getId() {

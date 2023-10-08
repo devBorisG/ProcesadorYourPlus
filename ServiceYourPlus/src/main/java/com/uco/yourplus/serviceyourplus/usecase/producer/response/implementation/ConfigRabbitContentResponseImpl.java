@@ -26,13 +26,13 @@ public class ConfigRabbitContentResponseImpl implements ConfigRabbitContentRespo
 
     @Override
     public Optional<Message> getBodyMessage(ResponseDomain object, MessageProperties messageProperties) {
-        try{
+        try {
             Optional<String> textMessage = mapperJsonObject.executeGson(object);
             return textMessage.map(msg -> MessageBuilder.withBody(msg.getBytes()).andProperties(messageProperties).build());
-        } catch (CrosscuttingCustomException exception){
+        } catch (CrosscuttingCustomException exception) {
             throw exception;
-        } catch (Exception exception){
-            throw ServiceCustomException.createTechnicalException(exception,"Ocurrio un error inesperado generando el cuerpo");
+        } catch (Exception exception) {
+            throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado generando el cuerpo");
         }
     }
 

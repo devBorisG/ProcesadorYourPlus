@@ -19,7 +19,7 @@ public class EliminarProductoImpl implements EliminarProducto {
     private final EliminarProductoSpecification specification;
 
     @Autowired
-    public EliminarProductoImpl(ProductoRepository repository, EliminarProductoSpecification specification){
+    public EliminarProductoImpl(ProductoRepository repository, EliminarProductoSpecification specification) {
         this.repository = repository;
         this.specification = specification;
     }
@@ -27,17 +27,17 @@ public class EliminarProductoImpl implements EliminarProducto {
     @Override
     public void execute(ProductoDomain domain) {
         ProductoEntity productoEntity = new ProductoEntity();
-        try{
+        try {
             specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
             repository.delete(productoEntity);
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             throw exception;
-        }catch (RepositoryCustomException exception){
-            throw ServiceCustomException.createTechnicalException(exception,"Ocurrio un error utilizando JPA");
-        }catch (BeanInstantiationException exception){
+        } catch (RepositoryCustomException exception) {
+            throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error utilizando JPA");
+        } catch (BeanInstantiationException exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error mapeando el obejto de domain a entity");
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado");
         }
     }

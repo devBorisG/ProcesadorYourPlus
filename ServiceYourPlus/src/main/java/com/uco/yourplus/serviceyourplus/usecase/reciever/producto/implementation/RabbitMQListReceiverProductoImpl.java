@@ -22,19 +22,19 @@ public class RabbitMQListReceiverProductoImpl implements RabbitMQListReceiverPro
 //            useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto(s) consultados con éxito");
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
-            if (exception.isTechnicalException()){
+            if (exception.isTechnicalException()) {
                 responseDomain.setMessage("Algo salio mal consultado los productos, intenta nuevamente");
-            }else {
+            } else {
                 responseDomain.setMessage(exception.getMessage());
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
-        }finally {
+        } finally {
             //TODO: Agregar el sender de rabbit
         }
     }

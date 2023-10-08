@@ -53,22 +53,22 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
             useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto registrado con éxito");
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
-            if (exception.isTechnicalException()){
+            if (exception.isTechnicalException()) {
                 responseDomain.setMessage("Algo salio mal registrando el producto, intenta nuevamente");
-            }else {
+            } else {
                 responseDomain.setMessage(exception.getMessage());
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
-        }finally {
+        } finally {
             MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
-            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
-            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getSave(),bodyMessage.get());
+            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
+            rabbitTemplate.convertAndSend(producer.getExchange(), producer.getRoutingkey().getSave(), bodyMessage.get());
         }
     }
 }

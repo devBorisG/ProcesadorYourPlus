@@ -21,16 +21,17 @@ public class ConfigRabbitContentExceptionImpl implements ConfigRabbitContentExce
     public ConfigRabbitContentExceptionImpl(MapperJsonObject mapperJsonObject) {
         this.mapperJsonObject = mapperJsonObject;
     }
+
     @Override
     public Optional<Message> getBodyMessage(Exception object, MessageProperties messageProperties) {
-        try{
+        try {
             Optional<String> textMessage = mapperJsonObject.executeGson(object);
             return textMessage.map(msg -> MessageBuilder.withBody(msg.getBytes())
                     .andProperties(messageProperties)
                     .build());
-        }catch (CrosscuttingCustomException exception){
+        } catch (CrosscuttingCustomException exception) {
             throw exception;
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrió un Error inesperado generando el cuerpo del mensaje");
         }
     }
