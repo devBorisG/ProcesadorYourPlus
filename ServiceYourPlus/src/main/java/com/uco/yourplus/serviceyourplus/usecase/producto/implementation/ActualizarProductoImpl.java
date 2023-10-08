@@ -3,7 +3,7 @@ package com.uco.yourplus.serviceyourplus.usecase.producto.implementation;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.ProductoEntity;
-import com.uco.yourplus.repositoryyourplus.ProductoRepository;
+import com.uco.yourplus.repositoryyourplus.producto.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.specification.producto.ActualizarProductoSpecification;
 import com.uco.yourplus.serviceyourplus.usecase.producto.ActualizarProducto;

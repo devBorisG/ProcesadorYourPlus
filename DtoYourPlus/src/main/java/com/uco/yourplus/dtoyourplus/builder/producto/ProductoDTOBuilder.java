@@ -1,5 +1,7 @@
 package com.uco.yourplus.dtoyourplus.builder.producto;
 
+import com.uco.yourplus.dtoyourplus.CategoriaDTO;
+import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
 import com.uco.yourplus.dtoyourplus.ProductoDTO;
 
 import java.util.UUID;
@@ -11,10 +13,12 @@ public class ProductoDTOBuilder implements ProductoBuilder{
     private int precio;
     private String descripcion;
     private String imagen;
+    private CategoriaDTO categoria;
+    private LaboratorioDTO laboratorio;
 
-    //TODO: crear los atributos de laboratorio y categoria
-
-    private ProductoDTOBuilder(){super();}
+    private ProductoDTOBuilder(){
+        super();
+    }
 
     public static ProductoDTOBuilder getProductoDTOBuilder(){
         return new ProductoDTOBuilder();
@@ -50,7 +54,19 @@ public class ProductoDTOBuilder implements ProductoBuilder{
         return this;
     }
 
-    public ProductoDTO build() {
-        return ProductoDTO.create(id, nombre, precio, descripcion, imagen);
+    @Override
+    public ProductoDTOBuilder setCategoria(CategoriaDTO categoria) {
+        this.categoria = categoria;
+        return this;
+    }
+
+    @Override
+    public ProductoDTOBuilder setLaboratorio(LaboratorioDTO laboratorio) {
+        this.laboratorio = laboratorio;
+        return this;
+    }
+
+    public ProductoDTO build(){
+        return ProductoDTO.create(id,nombre,precio,descripcion,imagen,laboratorio,categoria);
     }
 }

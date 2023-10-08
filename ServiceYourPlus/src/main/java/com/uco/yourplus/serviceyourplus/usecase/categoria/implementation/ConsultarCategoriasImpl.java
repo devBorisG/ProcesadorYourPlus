@@ -3,7 +3,7 @@ package com.uco.yourplus.serviceyourplus.usecase.categoria.implementation;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.CategoriaEntity;
-import com.uco.yourplus.repositoryyourplus.CategoriaRepository;
+import com.uco.yourplus.repositoryyourplus.categoria.CategoriaRepository;
 import com.uco.yourplus.serviceyourplus.domain.CategoriaDomain;
 import com.uco.yourplus.serviceyourplus.usecase.categoria.ConsultarCategorias;
 import org.springframework.beans.BeanUtils;

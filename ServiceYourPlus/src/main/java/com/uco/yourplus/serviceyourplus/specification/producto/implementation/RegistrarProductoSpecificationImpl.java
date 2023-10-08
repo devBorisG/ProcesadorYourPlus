@@ -6,7 +6,7 @@ import static com.uco.yourplus.crosscuttingyourplus.helper.ObjectHelper.isNull;
 import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.isDefaultUUID;
 import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.isEmpty;
 import static com.uco.yourplus.crosscuttingyourplus.helper.IntegerHelper.isDefaultInteger;
-import com.uco.yourplus.repositoryyourplus.ProductoRepository;
+import com.uco.yourplus.repositoryyourplus.producto.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.specification.producto.RegistrarProductoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;

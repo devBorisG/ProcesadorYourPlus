@@ -1,7 +1,7 @@
 package com.uco.yourplus.serviceyourplus.specification.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
-import com.uco.yourplus.repositoryyourplus.ProductoRepository;
+import com.uco.yourplus.repositoryyourplus.producto.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.specification.producto.ActualizarProductoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;

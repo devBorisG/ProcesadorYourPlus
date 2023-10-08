@@ -1,4 +1,4 @@
-package com.uco.yourplus.repositoryyourplus;
+package com.uco.yourplus.repositoryyourplus.categoria;
 
 import com.uco.yourplus.entityyourplus.CategoriaEntity;
 import com.uco.yourplus.repositoryyourplus.categoria.CategoriaRepositoryCustom;

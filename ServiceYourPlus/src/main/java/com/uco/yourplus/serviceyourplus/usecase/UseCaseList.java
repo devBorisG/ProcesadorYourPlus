@@ -19,4 +19,6 @@ public interface UseCaseList<D> {
      * @return Una lista de objetos de dominio de tipo D que representan el resultado de la ejecución.
      */
     List<D> execute(Optional<D> domain);
+
+    List<D> execute(String domain);
 }
