@@ -15,9 +15,9 @@ public class RabbitMQListReceiverProductoImpl implements RabbitMQListReceiverPro
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.list}")
     @Override
-    public void execute(ProductoDomain domain) {
+    public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;
-        ResponseDomain responseDomain = new ResponseDomain();
+        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain();
         try {
 //            useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
