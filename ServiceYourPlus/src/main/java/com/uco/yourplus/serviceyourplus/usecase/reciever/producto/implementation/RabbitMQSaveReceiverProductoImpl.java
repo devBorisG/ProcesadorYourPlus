@@ -1,6 +1,8 @@
 package com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
+import com.uco.yourplus.crosscuttingyourplus.helper.json.MapperJsonObject;
+import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.producto.RegistrarProducto;
@@ -13,17 +15,21 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
 
     private final RegistrarProducto useCase;
 
-    public RabbitMQSaveReceiverProductoImpl(RegistrarProducto useCase) {
+    private final MapperJsonObject mapperJsonObject;
+
+    public RabbitMQSaveReceiverProductoImpl(RegistrarProducto useCase, MapperJsonObject mapperJsonObject) {
         this.useCase = useCase;
+        this.mapperJsonObject = mapperJsonObject;
     }
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
     @Override
-    public void execute(String domain) {
+    public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;
-        ResponseDomain responseDomain = new ResponseDomain();
+        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain();
         try {
-//            useCase.execute(domain);
+            ProductoDomain domain = mapperJsonObject.execute(message, ProductoDomain.class).get();
+            useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto registrado con éxito");
         }catch (ServiceCustomException exception){
