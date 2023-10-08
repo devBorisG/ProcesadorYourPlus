@@ -2,24 +2,45 @@ package com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementatio
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.crosscuttingyourplus.helper.json.MapperJsonObject;
+import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
+import com.uco.yourplus.serviceyourplus.usecase.producer.response.ConfigRabbitContentResponse;
 import com.uco.yourplus.serviceyourplus.usecase.producto.RegistrarProducto;
 import com.uco.yourplus.serviceyourplus.usecase.reciever.producto.RabbitMQSaveReceiverProducto;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@EnableConfigurationProperties(ProductoPropertiesCatalogProducer.class)
 public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverProducto {
 
     private final RegistrarProducto useCase;
 
     private final MapperJsonObject mapperJsonObject;
 
-    public RabbitMQSaveReceiverProductoImpl(RegistrarProducto useCase, MapperJsonObject mapperJsonObject) {
+    private final RabbitTemplate rabbitTemplate;
+
+    private final ConfigRabbitContentResponse configRabbitContentResponse;
+
+    private final ProductoPropertiesCatalogProducer producer;
+
+    public RabbitMQSaveReceiverProductoImpl(RegistrarProducto useCase, MapperJsonObject mapperJsonObject,
+                                            RabbitTemplate rabbitTemplate, ConfigRabbitContentResponse configRabbitContentResponse,
+                                            @Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer producer) {
         this.useCase = useCase;
         this.mapperJsonObject = mapperJsonObject;
+        this.rabbitTemplate = rabbitTemplate;
+        this.configRabbitContentResponse = configRabbitContentResponse;
+        this.producer = producer;
     }
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
@@ -45,7 +66,9 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
         }finally {
-            //TODO: Agregar el sender de rabbit
+            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
+            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
+            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getSave(),bodyMessage.get());
         }
     }
 }
