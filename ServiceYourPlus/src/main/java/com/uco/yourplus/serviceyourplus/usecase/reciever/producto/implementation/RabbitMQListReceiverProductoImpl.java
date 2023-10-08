@@ -17,7 +17,7 @@ public class RabbitMQListReceiverProductoImpl implements RabbitMQListReceiverPro
     @Override
     public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;
-        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain();
+        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
         try {
 //            useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);

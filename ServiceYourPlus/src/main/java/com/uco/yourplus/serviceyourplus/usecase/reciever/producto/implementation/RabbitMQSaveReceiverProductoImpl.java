@@ -47,7 +47,7 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
     @Override
     public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;
-        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain();
+        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
         try {
             ProductoDomain domain = mapperJsonObject.execute(message, ProductoDomain.class).get();
             useCase.execute(domain);
