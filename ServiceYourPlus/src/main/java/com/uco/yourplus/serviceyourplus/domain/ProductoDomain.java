@@ -8,6 +8,24 @@ public class ProductoDomain {
     int precio;
     String descripcion;
     String imagen;
+    CategoriaDomain categoria;
+    LaboratorioDomain laboratorio;
+
+    public CategoriaDomain getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaDomain categoria) {
+        this.categoria = categoria;
+    }
+
+    public LaboratorioDomain getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(LaboratorioDomain laboratorio) {
+        this.laboratorio = laboratorio;
+    }
 
     public UUID getId() {
         return id;

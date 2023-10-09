@@ -1,5 +1,8 @@
 package com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.crosscuttingyourplus.helper.json.MapperJsonObject;
 import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
@@ -18,6 +21,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @EnableConfigurationProperties(ProductoPropertiesCatalogProducer.class)
@@ -46,13 +50,34 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
     @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
     @Override
     public void execute(String message) {
+        try{
+            ResponseDomain<ProductoDomain> responseDomain = setIdForMessage(message);
+            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
+            sentResponse(responseDomain, message, messageProperties);
+        }catch (JsonProcessingException exception){
+            throw ServiceCustomException.createTechnicalException(exception, "No se pudo agregar el id del mensaje");
+        }catch (Exception exception){
+            throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado");
+        }
+    }
+
+    private ResponseDomain<ProductoDomain> setIdForMessage(String message) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(message);
+        ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
+        responseDomain.setId(UUID.fromString(jsonNode.get("id").asText()));
+        return responseDomain;
+    }
+
+    private void sentResponse(ResponseDomain<ProductoDomain> responseDomain, String message, MessageProperties messageProperties){
         StateResponse stateResponse = StateResponse.SUCCESS;
-        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
+        Optional<Message> bodyMessage = Optional.empty();
         try {
             ProductoDomain domain = mapperJsonObject.execute(message, ProductoDomain.class).get();
             useCase.execute(domain);
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto registrado con éxito");
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
@@ -61,13 +86,13 @@ public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverPro
             } else {
                 responseDomain.setMessage(exception.getMessage());
             }
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } finally {
-            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
-            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
             rabbitTemplate.convertAndSend(producer.getExchange(), producer.getRoutingkey().getSave(), bodyMessage.get());
         }
     }
