@@ -6,7 +6,6 @@ import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.reciever.laboratorio.RabbitMQListReceiverLaboratorio;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,7 +19,7 @@ public class RabbitMQListReceiverLaboratorioImpl implements RabbitMQListReceiver
         this.useCase = useCase;
     }
 
-    @RabbitListener(queues = "${}")
+    //    @RabbitListener(queues = "${}")
     @Override
     public void execute(LaboratorioDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
@@ -29,19 +28,19 @@ public class RabbitMQListReceiverLaboratorioImpl implements RabbitMQListReceiver
             useCase.execute(Optional.of(domain));
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Lista de laboratorios");
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
-            if (exception.isTechnicalException()){
+            if (exception.isTechnicalException()) {
                 responseDomain.setMessage("Algo salio mal consultando los laboratorios, intenta nuevamente");
-            }else {
+            } else {
                 responseDomain.setMessage(exception.getMessage());
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
-        }finally {
+        } finally {
             //TODO: Agregar el sender de rabbit
         }
     }

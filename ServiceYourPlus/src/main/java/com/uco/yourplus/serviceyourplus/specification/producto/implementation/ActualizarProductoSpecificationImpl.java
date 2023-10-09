@@ -18,7 +18,7 @@ public class ActualizarProductoSpecificationImpl implements ActualizarProductoSp
     private final ProductoRepository repository;
 
     @Autowired
-    public ActualizarProductoSpecificationImpl(ProductoRepository repository){
+    public ActualizarProductoSpecificationImpl(ProductoRepository repository) {
         this.repository = repository;
     }
 
@@ -31,26 +31,26 @@ public class ActualizarProductoSpecificationImpl implements ActualizarProductoSp
 
     private void verifyProductIntegrity(ProductoDomain domain) {
         //Que el objeto no venga nulo
-        if (isNull(domain)){
+        if (isNull(domain)) {
             throw ServiceCustomException.createUserException("No se esta recibiendo ningun producto");
         }
         //Que el producto exista en la base de datos
-        if (repository.findById(domain.getId()).isEmpty()){
+        if (repository.findById(domain.getId()).isEmpty()) {
             throw ServiceCustomException.createUserException("El producto que desea actualizar no existe");
         }
         //Que el nombre no exista en la base de datos
         if (repository.findAll().stream().filter(entidad -> domain.getNombre()
                         .equals(entidad.getNombre()))
-                        .findFirst()
-                        .isPresent()){
+                .findFirst()
+                .isPresent()) {
             throw ServiceCustomException.createUserException("Este nombre ya existe, intente nuevamente");
         }
         //Que todos los datos esten presentes
-        if (verifyObligatoryAttributes(domain)){
+        if (verifyObligatoryAttributes(domain)) {
             throw ServiceCustomException.createUserException("Algunos datos del producto estan vacios");
         }
         //Que el precio no sea negativo
-        if (domain.getPrecio()<0){
+        if (domain.getPrecio() < 0) {
             throw ServiceCustomException.createUserException("El precio no puede ser negativo");
         }
     }

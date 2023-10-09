@@ -14,31 +14,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CategoriaRepositoryCustomImpl implements CategoriaRepositoryCustom{
+public class CategoriaRepositoryCustomImpl implements CategoriaRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<CategoriaEntity> findCustom(CategoriaEntity categoriaEntity) {
-        try{
+        try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<CategoriaEntity> query = criteriaBuilder.createQuery(CategoriaEntity.class);
             Root<CategoriaEntity> categoriaEntityRoot = query.from(CategoriaEntity.class);
             List<Predicate> predicates = new ArrayList<>();
 
-            if(Objects.isNull(categoriaEntity)){
-                if(!StringHelper.isEmpty(categoriaEntity.getNombre())){
-                    predicates.add(criteriaBuilder.equal(categoriaEntityRoot.get("nombre"),categoriaEntity.getNombre()));
+            if (Objects.isNull(categoriaEntity)) {
+                if (!StringHelper.isEmpty(categoriaEntity.getNombre())) {
+                    predicates.add(criteriaBuilder.equal(categoriaEntityRoot.get("nombre"), categoriaEntity.getNombre()));
                 }
-                if(!StringHelper.isEmpty(categoriaEntity.getDescripcion())){
-                    predicates.add(criteriaBuilder.equal(categoriaEntityRoot.get("descripcion"),categoriaEntity.getDescripcion()));
+                if (!StringHelper.isEmpty(categoriaEntity.getDescripcion())) {
+                    predicates.add(criteriaBuilder.equal(categoriaEntityRoot.get("descripcion"), categoriaEntity.getDescripcion()));
                 }
             }
             query.select(categoriaEntityRoot).where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
             return entityManager.createQuery(query).getResultList();
-        } catch(Exception exception){
-            throw RepositoryCustomException.createTechnicalException(exception,"ocurrio un error listando las categorias");
+        } catch (Exception exception) {
+            throw RepositoryCustomException.createTechnicalException(exception, "ocurrio un error listando las categorias");
         }
     }
 }

@@ -15,16 +15,16 @@ public class EliminarProductoSpecificationImpl implements EliminarProductoSpecif
     private final ProductoRepository repository;
 
     @Autowired
-    public EliminarProductoSpecificationImpl(ProductoRepository repository){
+    public EliminarProductoSpecificationImpl(ProductoRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public void isSatisfied(ProductoDomain domain) {
-        if(isNull(domain)){
+        if (isNull(domain)) {
             throw ServiceCustomException.createUserException("No se esta enviando ningun producto para eliminar");
         }
-        if(repository.findById(domain.getId()).isEmpty()){
+        if (repository.findById(domain.getId()).isEmpty()) {
             throw ServiceCustomException.createUserException("El producto que desea eliminar no existe");
         }
     }

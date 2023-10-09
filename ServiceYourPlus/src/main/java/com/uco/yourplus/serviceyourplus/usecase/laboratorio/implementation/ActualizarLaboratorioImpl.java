@@ -19,6 +19,7 @@ public class ActualizarLaboratorioImpl implements ActualizarLaboratorio {
 
     @Autowired
     private LaboratorioRepository laboratorioRepository;
+
     @Override
     public void execute(UUID id, LaboratorioDomain patch) {
         try {
@@ -30,7 +31,7 @@ public class ActualizarLaboratorioImpl implements ActualizarLaboratorio {
             } else {
                 throw new EntityNotFoundException("El Laboratorio no existe");
             }
-        }catch (Exception exception ){
+        } catch (Exception exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrió un error inesperado al actualizar la entidad: " + exception.getMessage());
         }
     }

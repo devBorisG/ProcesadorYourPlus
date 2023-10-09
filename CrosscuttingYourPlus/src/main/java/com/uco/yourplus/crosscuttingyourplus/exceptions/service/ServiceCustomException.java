@@ -15,9 +15,9 @@ public class ServiceCustomException extends YourPlusCustomException {
     /**
      * Crea una nueva instancia de ServiceCustomException con un mensaje técnico y un mensaje amigable para el usuario.
      *
-     * @param rootException   La excepción raíz que causó este error, o null si no hay una excepción raíz.
+     * @param rootException    La excepción raíz que causó este error, o null si no hay una excepción raíz.
      * @param technicalMessage El mensaje técnico que describe la causa del error.
-     * @param userMessage     El mensaje amigable para el usuario que se muestra en la interfaz de usuario.
+     * @param userMessage      El mensaje amigable para el usuario que se muestra en la interfaz de usuario.
      */
     private ServiceCustomException(Exception rootException, String technicalMessage, String userMessage) {
         super(rootException, technicalMessage, userMessage, LayerException.SERVICE);
@@ -37,8 +37,8 @@ public class ServiceCustomException extends YourPlusCustomException {
     /**
      * Crea una excepción de servicio con una excepción raíz, un mensaje técnico y un mensaje amigable para el usuario.
      *
-     * @param rootException   La excepción raíz que causó este error.
-     * @param userMessage     El mensaje amigable para el usuario que se muestra en la interfaz de usuario.
+     * @param rootException    La excepción raíz que causó este error.
+     * @param userMessage      El mensaje amigable para el usuario que se muestra en la interfaz de usuario.
      * @param technicalMessage El mensaje técnico que describe la causa del error.
      * @return Una nueva instancia de ServiceCustomException.
      */
@@ -64,7 +64,7 @@ public class ServiceCustomException extends YourPlusCustomException {
      * @param technicalMessage El mensaje técnico que describe la causa del error.
      * @return Una nueva instancia de ServiceCustomException.
      */
-    public static YourPlusCustomException createTechnicalException(final Exception rootException, final String technicalMessage){
+    public static YourPlusCustomException createTechnicalException(final Exception rootException, final String technicalMessage) {
         return new ServiceCustomException(rootException, technicalMessage, EMPTY);
     }
 
@@ -74,7 +74,7 @@ public class ServiceCustomException extends YourPlusCustomException {
      * @param userMessage El mensaje amigable para el usuario que se muestra en la interfaz de usuario.
      * @return Una nueva instancia de ServiceCustomException.
      */
-    public static YourPlusCustomException createUserException(final String userMessage){
+    public static YourPlusCustomException createUserException(final String userMessage) {
         return new ServiceCustomException(null, userMessage, userMessage);
     }
 
@@ -85,19 +85,19 @@ public class ServiceCustomException extends YourPlusCustomException {
      * @param rootException   La excepción raíz que causó este error.
      * @return Una nueva instancia de ServiceCustomException.
      */
-    public static YourPlusCustomException createBusinessException(final String businessMessage, final Exception rootException){
+    public static YourPlusCustomException createBusinessException(final String businessMessage, final Exception rootException) {
         return new ServiceCustomException(rootException, businessMessage, EMPTY);
     }
 
     /**
      * Envuelve una excepción personalizada en una excepción de negocio si no tiene un mensaje técnico.
      *
-     * @param message    El mensaje de negocio que describe la causa del error.
-     * @param exception  La excepción personalizada existente que se va a envolver si no tiene un mensaje técnico.
+     * @param message   El mensaje de negocio que describe la causa del error.
+     * @param exception La excepción personalizada existente que se va a envolver si no tiene un mensaje técnico.
      * @return Una excepción de negocio envuelta o la excepción personalizada original si ya tiene un mensaje técnico.
      */
-    public static YourPlusCustomException wrapException(final String message, final YourPlusCustomException exception){
-        if(exception.isTechnicalException()){
+    public static YourPlusCustomException wrapException(final String message, final YourPlusCustomException exception) {
+        if (exception.isTechnicalException()) {
             return ServiceCustomException.createBusinessException(message, exception);
         }
         return exception;

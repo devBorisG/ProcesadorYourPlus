@@ -1,9 +1,9 @@
 /**
-  La interfaz EliminarPersona define un contrato para el caso de uso de eliminación de personas en
-  la aplicación YourPlus. Esta interfaz extiende la interfaz UseCase, que proporciona un método genérico
- para ejecutar casos de uso.
-
- @param <PersonaDomain> Tipo genérico que representa el dominio de la persona a eliminar.
+ * La interfaz EliminarPersona define un contrato para el caso de uso de eliminación de personas en
+ * la aplicación YourPlus. Esta interfaz extiende la interfaz UseCase, que proporciona un método genérico
+ * para ejecutar casos de uso.
+ *
+ * @param <PersonaDomain> Tipo genérico que representa el dominio de la persona a eliminar.
  */
 package com.uco.yourplus.serviceyourplus.usecase.laboratorio;
 

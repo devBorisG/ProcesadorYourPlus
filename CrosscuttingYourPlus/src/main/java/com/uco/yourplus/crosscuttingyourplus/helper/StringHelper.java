@@ -74,7 +74,7 @@ public class StringHelper {
      * @param value La cadena de texto que se verificará.
      * @return true si la cadena de texto contiene solo letras, false de lo contrario.
      */
-    public static boolean isOnlyWords(String value){
+    public static boolean isOnlyWords(String value) {
         return value.matches("^[a-zA-Z]+$");
     }
 

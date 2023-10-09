@@ -25,24 +25,24 @@ public class ConsultarCategoriasImpl implements ConsultarCategorias {
         List<CategoriaEntity> result;
         List<CategoriaDomain> convertResult = new ArrayList<>();
 
-        if(domain.isPresent()){
+        if (domain.isPresent()) {
             CategoriaEntity categoriaEntity = new CategoriaEntity();
-            BeanUtils.copyProperties(domain.get(),categoriaEntity);
-            try{
+            BeanUtils.copyProperties(domain.get(), categoriaEntity);
+            try {
                 result = categoriaRepository.findCustom(categoriaEntity);
-            } catch (RepositoryCustomException exception){
-                throw ServiceCustomException.createTechnicalException(exception,"Ocurrio un error, intente de nuevo");
+            } catch (RepositoryCustomException exception) {
+                throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error, intente de nuevo");
             }
-        } else{
-            try{
+        } else {
+            try {
                 result = categoriaRepository.findAll();
-            } catch (RepositoryCustomException exception){
-                throw ServiceCustomException.createTechnicalException(exception,"Ocurrio un error intente de nuevo");
+            } catch (RepositoryCustomException exception) {
+                throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error intente de nuevo");
             }
         }
-        result.forEach(value ->{
+        result.forEach(value -> {
             CategoriaDomain categoriaDomain = new CategoriaDomain();
-            BeanUtils.copyProperties(value,categoriaDomain);
+            BeanUtils.copyProperties(value, categoriaDomain);
             convertResult.add(categoriaDomain);
         });
         return convertResult;

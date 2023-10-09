@@ -6,9 +6,11 @@ import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ResponseDomain<T> {
 
+    private UUID id;
     private StateResponse stateResponse;
     private String message;
 
@@ -16,13 +18,15 @@ public class ResponseDomain<T> {
 
     public ResponseDomain() {
         super();
+        setId(UUID.randomUUID());
         setData(new ArrayList<>());
         setMessage(StringHelper.EMPTY);
         setStateResponse(StateResponse.ERROR);
     }
 
-    public ResponseDomain(StateResponse stateResponse, String message, List<T> data) {
+    public ResponseDomain(UUID id, StateResponse stateResponse, String message, List<T> data) {
         super();
+        setId(id);
         setData(data);
         setMessage(message);
         setStateResponse(stateResponse);
@@ -33,7 +37,7 @@ public class ResponseDomain<T> {
     }
 
     public void setStateResponse(StateResponse stateResponse) {
-        this.stateResponse = ObjectHelper.getDefaultIfNull(stateResponse,StateResponse.ERROR);
+        this.stateResponse = ObjectHelper.getDefaultIfNull(stateResponse, StateResponse.ERROR);
     }
 
     public String getMessage() {
@@ -50,5 +54,13 @@ public class ResponseDomain<T> {
 
     public void setData(List<T> data) {
         this.data = ObjectHelper.getDefaultIfNull(data, new ArrayList<>());
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

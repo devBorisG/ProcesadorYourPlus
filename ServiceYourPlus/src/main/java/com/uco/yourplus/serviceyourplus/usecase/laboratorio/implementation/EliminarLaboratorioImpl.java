@@ -25,19 +25,19 @@ public class EliminarLaboratorioImpl implements EliminarLaboratorio {
     @Override
     public void execute(LaboratorioDomain domain) {
         try {
-            Optional<LaboratorioDomain> laboratorioDomain =consultarLaboratorio.execute(Optional.of(domain)).stream().findFirst();
-            if (laboratorioDomain.isPresent()){
+            Optional<LaboratorioDomain> laboratorioDomain = consultarLaboratorio.execute(Optional.of(domain)).stream().findFirst();
+            if (laboratorioDomain.isPresent()) {
                 LaboratorioEntity laboratorioEntity = new LaboratorioEntity();
                 BeanUtils.copyProperties(laboratorioDomain.get(), domain);
                 laboratorioRepository.delete(laboratorioEntity);
-            }else {
+            } else {
                 throw ServiceCustomException.createTechnicalException("No se ha logrado encontrar el laboratorio.");
             }
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             throw exception;
-        } catch (RepositoryCustomException exception){
+        } catch (RepositoryCustomException exception) {
             throw ServiceCustomException.createTechnicalException("No se ha logrado consultar el repositorio.");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ServiceCustomException.createTechnicalException("Ha ocurrido un error inesperado durante la eliminación.");
         }
     }

@@ -19,7 +19,7 @@ public class RegistrarProductoImpl implements RegistrarProducto {
     private final RegistrarProductoSpecification specification;
 
     @Autowired
-    public RegistrarProductoImpl(ProductoRepository repository, RegistrarProductoSpecification specification){
+    public RegistrarProductoImpl(ProductoRepository repository, RegistrarProductoSpecification specification) {
         this.repository = repository;
         this.specification = specification;
     }
@@ -31,13 +31,13 @@ public class RegistrarProductoImpl implements RegistrarProducto {
             specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
             repository.save(productoEntity);
-        }catch (ServiceCustomException exception){
+        } catch (ServiceCustomException exception) {
             throw exception;
-        }catch (BeanInstantiationException exception){
+        } catch (BeanInstantiationException exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error mapeando el obejto de domain a entity");
-        }catch (RepositoryCustomException exception){
+        } catch (RepositoryCustomException exception) {
             throw ServiceCustomException.createTechnicalException(exception, "No se logro usar la integracion de JPA");
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw ServiceCustomException.createTechnicalException(exception, "Ocurrió un error inesperado");
         }
     }

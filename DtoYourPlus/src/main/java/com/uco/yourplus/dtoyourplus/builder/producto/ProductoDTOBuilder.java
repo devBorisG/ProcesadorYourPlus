@@ -4,7 +4,7 @@ import com.uco.yourplus.dtoyourplus.ProductoDTO;
 
 import java.util.UUID;
 
-public class ProductoDTOBuilder implements ProductoBuilder{
+public class ProductoDTOBuilder implements ProductoBuilder {
 
     private UUID id;
     private String nombre;
@@ -14,9 +14,11 @@ public class ProductoDTOBuilder implements ProductoBuilder{
 
     //TODO: crear los atributos de laboratorio y categoria
 
-    private ProductoDTOBuilder(){super();}
+    private ProductoDTOBuilder() {
+        super();
+    }
 
-    public static ProductoDTOBuilder getProductoDTOBuilder(){
+    public static ProductoDTOBuilder getProductoDTOBuilder() {
         return new ProductoDTOBuilder();
     }
 

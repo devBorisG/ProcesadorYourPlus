@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface LaboratorioRepository extends JpaRepository<LaboratorioEntity, UUID>,LaboratorioRepositoryCustom {
+public interface LaboratorioRepository extends JpaRepository<LaboratorioEntity, UUID>, LaboratorioRepositoryCustom {
 
 }
