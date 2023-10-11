@@ -1,8 +1,5 @@
 package com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementation;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.crosscuttingyourplus.helper.json.MapperJsonObject;
 import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
@@ -21,55 +18,38 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @EnableConfigurationProperties(ProductoPropertiesCatalogProducer.class)
 public class RabbitMQSaveReceiverProductoImpl implements RabbitMQSaveReceiverProducto {
 
     private final RegistrarProducto useCase;
-
     private final MapperJsonObject mapperJsonObject;
-
     private final RabbitTemplate rabbitTemplate;
-
     private final ConfigRabbitContentResponse configRabbitContentResponse;
-
     private final ProductoPropertiesCatalogProducer producer;
+    private final ConfigurateSendResponse<ProductoDomain> configurateSendResponse;
 
     public RabbitMQSaveReceiverProductoImpl(RegistrarProducto useCase, MapperJsonObject mapperJsonObject,
                                             RabbitTemplate rabbitTemplate, ConfigRabbitContentResponse configRabbitContentResponse,
-                                            @Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer producer) {
+                                            @Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer producer, ConfigurateSendResponse<ProductoDomain> configurateSendResponse) {
         this.useCase = useCase;
         this.mapperJsonObject = mapperJsonObject;
         this.rabbitTemplate = rabbitTemplate;
         this.configRabbitContentResponse = configRabbitContentResponse;
         this.producer = producer;
+        this.configurateSendResponse = configurateSendResponse;
     }
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.save}")
     @Override
     public void execute(String message) {
-        try{
-            ResponseDomain<ProductoDomain> responseDomain = setIdForMessage(message);
-            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
-            sentResponse(responseDomain, message, messageProperties);
-        }catch (JsonProcessingException exception){
-            throw ServiceCustomException.createTechnicalException(exception, "No se pudo agregar el id del mensaje");
-        }catch (Exception exception){
-            throw ServiceCustomException.createTechnicalException(exception, "Ocurrio un error inesperado");
-        }
+        ResponseDomain<ProductoDomain> responseDomain = configurateSendResponse.setIdForMessage(message);
+        MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
+        sentResponse(responseDomain, message, messageProperties);
     }
 
-    private ResponseDomain<ProductoDomain> setIdForMessage(String message) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(message);
-        ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
-        responseDomain.setId(UUID.fromString(jsonNode.get("id").asText()));
-        return responseDomain;
-    }
-
-    private void sentResponse(ResponseDomain<ProductoDomain> responseDomain, String message, MessageProperties messageProperties){
+    private void sentResponse(ResponseDomain<ProductoDomain> responseDomain, String message, MessageProperties messageProperties) {
         StateResponse stateResponse = StateResponse.SUCCESS;
         Optional<Message> bodyMessage = Optional.empty();
         try {
