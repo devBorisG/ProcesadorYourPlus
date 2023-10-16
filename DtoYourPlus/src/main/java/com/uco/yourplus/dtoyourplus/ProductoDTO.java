@@ -4,10 +4,13 @@ import java.util.UUID;
 
 import static com.uco.yourplus.crosscuttingyourplus.helper.IntegerHelper.ZERO;
 import static com.uco.yourplus.crosscuttingyourplus.helper.IntegerHelper.getDefaultInteger;
+import static com.uco.yourplus.crosscuttingyourplus.helper.ObjectHelper.getDefaultIfNull;
 import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.EMPTY;
 import static com.uco.yourplus.crosscuttingyourplus.helper.StringHelper.getDefaultString;
 import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.getDefaultUUID;
 import static com.uco.yourplus.crosscuttingyourplus.helper.UUIDHelper.getNewUUID;
+import static com.uco.yourplus.dtoyourplus.builder.categoria.CategoriaDTOBuilder.getCategoriaDTOBuilder;
+import static com.uco.yourplus.dtoyourplus.builder.laboratorio.LaboratorioDTOBuilder.getLaboratorioDTOBuilder;
 
 public class ProductoDTO {
 
@@ -17,7 +20,8 @@ public class ProductoDTO {
     private String descripcion;
     private String imagen;
 
-    //TODO: crear los atributos de laboratorio y categoria
+    private LaboratorioDTO laboratorioDTO;
+    private CategoriaDTO categoriaDTO;
 
     public ProductoDTO() {
         setId(getNewUUID());
@@ -25,29 +29,29 @@ public class ProductoDTO {
         setPrecio(ZERO);
         setDescripcion(EMPTY);
         setImagen(EMPTY);
-        //TODO: Agregar el laboratorio y categoria al constructor
+        setLaboratorioDTO(new LaboratorioDTO());
+        setCategoriaDTO(new CategoriaDTO());
     }
 
-    public ProductoDTO(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen) {
+    public ProductoDTO(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen, final LaboratorioDTO laboratorioDTO, final CategoriaDTO categoriaDTO) {
         setId(id);
         setNombre(nombre);
         setPrecio(precio);
         setDescripcion(descripcion);
         setImagen(imagen);
-        //TODO: Agregar el laboratorio y categoria al constructor
+        setLaboratorioDTO(laboratorioDTO);
+        setCategoriaDTO(categoriaDTO);
     }
 
-    public static ProductoDTO create(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen) {
-        //TODO: Agregar los objetos de laboratorio y categoria
-        return new ProductoDTO(id, nombre, precio, descripcion, imagen);
+    public static ProductoDTO create(final UUID id, final String nombre, final int precio, final String descripcion, final String imagen, final LaboratorioDTO laboratorioDTO, final CategoriaDTO categoriaDTO) {
+        return new ProductoDTO(id, nombre, precio, descripcion, imagen,laboratorioDTO, categoriaDTO);
     }
 
     public static ProductoDTO create(final UUID id) {
-        //TODO: Agregar los objetos de laboratorio y categoria
-        return new ProductoDTO(id, EMPTY, ZERO, EMPTY, EMPTY);
+        return new ProductoDTO(id, EMPTY, ZERO, EMPTY, EMPTY, new LaboratorioDTO(), new CategoriaDTO());
     }
 
-    //TODO: Crear los getters y setters para laboratorio y categoria
+
     public UUID getId() {
         return id;
     }
@@ -86,5 +90,21 @@ public class ProductoDTO {
 
     public void setImagen(String imagen) {
         this.imagen = getDefaultString(imagen);
+    }
+
+    public LaboratorioDTO getLaboratorioDTO() {
+        return laboratorioDTO;
+    }
+
+    public void setLaboratorioDTO(final LaboratorioDTO laboratorioDTO) {
+        this.laboratorioDTO = getDefaultIfNull(laboratorioDTO, getLaboratorioDTOBuilder().build());
+    }
+
+    public CategoriaDTO getCategoriaDTO() {
+        return categoriaDTO;
+    }
+
+    public void setCategoriaDTO(final CategoriaDTO categoriaDTO) {
+        this.categoriaDTO = getDefaultIfNull(categoriaDTO, getCategoriaDTOBuilder().build());
     }
 }
