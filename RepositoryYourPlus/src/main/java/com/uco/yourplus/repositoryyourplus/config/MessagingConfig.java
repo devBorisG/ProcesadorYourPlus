@@ -1,5 +1,6 @@
 package com.uco.yourplus.repositoryyourplus.config;
 
+import com.uco.yourplus.crosscuttingyourplus.properties.LaboratorioPropertiesCatalogProducer;
 import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -11,13 +12,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(ProductoPropertiesCatalogProducer.class)
+@EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class})
 public class MessagingConfig {
 
     private ProductoPropertiesCatalogProducer properties;
+    private LaboratorioPropertiesCatalogProducer labProperties;
 
-    public MessagingConfig(@Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer properties) {
+    public MessagingConfig(@Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer properties,
+                           @Qualifier("laboratorioPropertiesCatalogProducer") LaboratorioPropertiesCatalogProducer labProperties) {
         this.properties = properties;
+        this.labProperties = labProperties;
     }
 
     //Spring bean for producer save queue
@@ -50,6 +54,28 @@ public class MessagingConfig {
         return new TopicExchange(properties.getExchange());
     }
 
+    //Queues for laboratorio
+
+    @Bean
+    public Queue saveQueueLab(){
+        return new Queue(labProperties.getQueue().getSave());
+    }
+
+    @Bean
+    public Queue deleteQueueLab(){
+        return new Queue(labProperties.getQueue().getDelete());
+    }
+
+    @Bean
+    public Queue updateQueueLab(){
+        return new Queue(labProperties.getQueue().getUpdate());
+    }
+
+    @Bean
+    public Queue listQueueLab(){
+        return new Queue(labProperties.getQueue().getList());
+    }
+
     //Binding between queue save an exchange using routing key
     @Bean
     public Binding saveBinding(Queue saveQueue, TopicExchange exchange) {
@@ -80,6 +106,31 @@ public class MessagingConfig {
         return BindingBuilder.bind(listQueue)
                 .to(exchange)
                 .with(properties.getRoutingkey().getList());
+    }
+
+    @Bean
+    public TopicExchange topicExchangeLab(){
+        return new TopicExchange(labProperties.getExchange());
+    }
+
+    @Bean
+    public Binding saveBindingLab(Queue saveQueueLab, TopicExchange topicExchangeLab){
+        return BindingBuilder.bind(saveQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getSave());
+    }
+
+    @Bean
+    public Binding deleteBindingLab(Queue deleteQueueLab, TopicExchange topicExchangeLab){
+        return BindingBuilder.bind(deleteQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getDelete());
+    }
+
+    @Bean
+    public Binding updateBindingLab(Queue updateQueueLab, TopicExchange topicExchangeLab){
+        return BindingBuilder.bind(updateQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getUpdate());
+    }
+
+    @Bean
+    public Binding listBindingLab(Queue listQueueLab, TopicExchange topicExchangeLab){
+        return BindingBuilder.bind(listQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getList());
     }
 
 }
