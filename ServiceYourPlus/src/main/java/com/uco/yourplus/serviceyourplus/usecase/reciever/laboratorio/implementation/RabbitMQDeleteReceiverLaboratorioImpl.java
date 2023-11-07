@@ -40,7 +40,7 @@ public class RabbitMQDeleteReceiverLaboratorioImpl implements RabbitMQDeleteRece
         this.producer = producer;
     }
 
-    @RabbitListener(queues = "${yourplus.management.laboratorio.queue.delete}")
+    @RabbitListener(queues = "${yourplus.management.laboratorio.response.queue.delete}")
     @Override
     public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;

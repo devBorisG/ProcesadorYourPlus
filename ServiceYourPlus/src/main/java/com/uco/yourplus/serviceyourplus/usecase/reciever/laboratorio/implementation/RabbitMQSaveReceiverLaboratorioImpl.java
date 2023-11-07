@@ -42,7 +42,7 @@ public class RabbitMQSaveReceiverLaboratorioImpl implements RabbitMQSaveReceiver
         this.producer = producer;
     }
 
-    @RabbitListener(queues = "${yourplus.management.laboratorio.queue.save}")
+    @RabbitListener(queues = "${yourplus.management.laboratorio.response.queue.save}")
     @Override
     public void execute(String message) {
         try{
