@@ -11,6 +11,7 @@ import com.uco.yourplus.serviceyourplus.usecase.producer.response.ConfigRabbitCo
 import com.uco.yourplus.serviceyourplus.usecase.reciever.laboratorio.RabbitMQUpdateReceiverLaboratorio;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class RabbitMQUpdateReceiverLaboratorioImpl implements RabbitMQUpdateRece
         this.producer = producer;
     }
 
-    //    @RabbitListener(queues = "${}")
+    @RabbitListener(queues = "${yourplus.management.laboratorio.response.queue.update}")
     @Override
     public void execute(String message) {
         StateResponse stateResponse = StateResponse.SUCCESS;
