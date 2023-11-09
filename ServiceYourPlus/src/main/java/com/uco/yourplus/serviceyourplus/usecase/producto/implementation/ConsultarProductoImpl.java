@@ -4,6 +4,8 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCus
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.ProductoEntity;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
+import com.uco.yourplus.serviceyourplus.domain.CategoriaDomain;
+import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
 import com.uco.yourplus.serviceyourplus.usecase.producto.ConsultarProducto;
 import org.springframework.beans.BeanUtils;
@@ -41,7 +43,13 @@ public class ConsultarProductoImpl implements ConsultarProducto {
         }
         productoEntities.forEach(value ->{
             ProductoDomain productoDomain = new ProductoDomain();
+            LaboratorioDomain laboratorioDomain = new LaboratorioDomain();
+            CategoriaDomain categoriaDomain = new CategoriaDomain();
             BeanUtils.copyProperties(value,productoDomain);
+            BeanUtils.copyProperties(value.getLaboratorioEntity(), laboratorioDomain);
+            BeanUtils.copyProperties(value.getCategoriaEntity(), categoriaDomain);
+            productoDomain.setCategoria(categoriaDomain);
+            productoDomain.setLaboratorio(laboratorioDomain);
             productoDomains.add(productoDomain);
         });
         return productoDomains;

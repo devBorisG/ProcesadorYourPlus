@@ -16,6 +16,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,24 +28,31 @@ public class RabbitMQListReceiverProductoImpl implements RabbitMQListReceiverPro
     private final ConfigRabbitContentResponse configRabbitContentResponse;
     private final ProductoPropertiesCatalogProducer producer;
 
+    private final ConfigurateSendResponse<ProductoDomain> configurateSendResponse;
     public RabbitMQListReceiverProductoImpl(ConsultarProducto useCase, MapperJsonObject mapperJsonObject, RabbitTemplate rabbitTemplate,
-                                            ConfigRabbitContentResponse configRabbitContentResponse,@Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer producer) {
+                                            ConfigRabbitContentResponse configRabbitContentResponse, @Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer producer, ConfigurateSendResponse<ProductoDomain> configurateSendResponse) {
         this.useCase = useCase;
         this.mapperJsonObject = mapperJsonObject;
         this.rabbitTemplate = rabbitTemplate;
         this.configRabbitContentResponse = configRabbitContentResponse;
         this.producer = producer;
+        this.configurateSendResponse = configurateSendResponse;
     }
 
     @RabbitListener(queues = "${yourplus.management.producto.queue.list}")
     @Override
-    public void execute(ProductoDomain domain) {
+    public void execute(String message) {
+        ResponseDomain<ProductoDomain> responseDomain = configurateSendResponse.setIdForMessage(message);
+        MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
         StateResponse stateResponse = StateResponse.SUCCESS;
-        final ResponseDomain<ProductoDomain> responseDomain = new ResponseDomain<>();
+        Optional<Message> bodyMessage = Optional.empty();
         try {
-            useCase.execute(Optional.of(domain));
+            ProductoDomain domain = mapperJsonObject.execute(message, ProductoDomain.class).get();
+            List<ProductoDomain> productoDomainList = useCase.execute(Optional.of(domain));
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Producto(s) consultados con éxito");
+            responseDomain.setData(productoDomainList);
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
@@ -53,13 +61,13 @@ public class RabbitMQListReceiverProductoImpl implements RabbitMQListReceiverPro
             } else {
                 responseDomain.setMessage(exception.getMessage());
             }
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } finally {
-            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
-            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
             rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getList(),bodyMessage.get());
         }
     }

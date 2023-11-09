@@ -36,7 +36,7 @@ public class RabbitMQListReceiverLaboratorioImpl implements RabbitMQListReceiver
         this.producer = producer;
     }
 
-    @RabbitListener(queues = "yourplus.management.laboratorio.response.queue.list")
+    @RabbitListener(queues = "${yourplus.management.laboratorio.response.queue.list}")
     @Override
     public void execute(LaboratorioDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
