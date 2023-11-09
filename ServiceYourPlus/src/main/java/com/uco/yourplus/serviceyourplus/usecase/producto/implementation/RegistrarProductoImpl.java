@@ -2,6 +2,8 @@ package com.uco.yourplus.serviceyourplus.usecase.producto.implementation;
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
+import com.uco.yourplus.entityyourplus.CategoriaEntity;
+import com.uco.yourplus.entityyourplus.LaboratorioEntity;
 import com.uco.yourplus.entityyourplus.ProductoEntity;
 import com.uco.yourplus.repositoryyourplus.ProductoRepository;
 import com.uco.yourplus.serviceyourplus.domain.ProductoDomain;
@@ -27,9 +29,15 @@ public class RegistrarProductoImpl implements RegistrarProducto {
     @Override
     public void execute(ProductoDomain domain) {
         ProductoEntity productoEntity = new ProductoEntity();
+        LaboratorioEntity laboratorioEntity = new LaboratorioEntity();
+        CategoriaEntity categoriaEntity = new CategoriaEntity();
         try {
             specification.isSatisfied(domain);
             BeanUtils.copyProperties(domain, productoEntity);
+            BeanUtils.copyProperties(domain.getLaboratorio(), laboratorioEntity);
+            BeanUtils.copyProperties(domain.getCategoria(), categoriaEntity);
+            productoEntity.setCategoriaEntity(categoriaEntity);
+            productoEntity.setLaboratorioEntity(laboratorioEntity);
             repository.save(productoEntity);
         } catch (ServiceCustomException exception) {
             throw exception;

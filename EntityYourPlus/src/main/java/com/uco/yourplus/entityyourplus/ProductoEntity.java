@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
@@ -22,4 +20,10 @@ public class ProductoEntity {
     int precio;
     String descripcion;
     String imagen;
+    @ManyToOne
+    @JoinColumn(name = "id_laboratorio")
+    LaboratorioEntity laboratorioEntity;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    CategoriaEntity categoriaEntity;
 }
