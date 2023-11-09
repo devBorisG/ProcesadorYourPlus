@@ -8,24 +8,9 @@ public class ProductoDomain {
     int precio;
     String descripcion;
     String imagen;
-    CategoriaDomain categoria;
-    LaboratorioDomain laboratorio;
+    CategoriaDomain categoriaDomain;
+    LaboratorioDomain laboratorioDomain;
 
-    public CategoriaDomain getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaDomain categoria) {
-        this.categoria = categoria;
-    }
-
-    public LaboratorioDomain getLaboratorio() {
-        return laboratorio;
-    }
-
-    public void setLaboratorio(LaboratorioDomain laboratorio) {
-        this.laboratorio = laboratorio;
-    }
 
     public UUID getId() {
         return id;
@@ -66,4 +51,21 @@ public class ProductoDomain {
     public void setImagen(final String imagen) {
         this.imagen = imagen;
     }
+
+    public CategoriaDomain getCategoriaDomain() {
+        return categoriaDomain;
+    }
+
+    public void setCategoriaDomain(CategoriaDomain categoriaDomain) {
+        this.categoriaDomain = categoriaDomain;
+    }
+
+    public LaboratorioDomain getLaboratorioDomain() {
+        return laboratorioDomain;
+    }
+
+    public void setLaboratorioDomain(LaboratorioDomain laboratorioDomain) {
+        this.laboratorioDomain = laboratorioDomain;
+    }
+
 }

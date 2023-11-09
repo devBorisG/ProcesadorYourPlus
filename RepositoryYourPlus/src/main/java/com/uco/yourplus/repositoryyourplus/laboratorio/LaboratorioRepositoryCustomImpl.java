@@ -23,17 +23,17 @@ public class LaboratorioRepositoryCustomImpl implements LaboratorioRepositoryCus
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<LaboratorioEntity> query = criteriaBuilder.createQuery(LaboratorioEntity.class);
-            Root<LaboratorioEntity> personaEntityRoot = query.from(LaboratorioEntity.class);
+            Root<LaboratorioEntity> laboratorioEntityRoot = query.from(LaboratorioEntity.class);
             List<Predicate> predicates = new ArrayList<>();
             if (!Objects.isNull(laboratorioEntity)) {
                 if (!StringHelper.isEmpty(laboratorioEntity.getNombre())) {
-                    predicates.add((criteriaBuilder.equal(personaEntityRoot.get("nombre"), laboratorioEntity.getNombre())));
+                    predicates.add((criteriaBuilder.equal(laboratorioEntityRoot.get("nombre"), laboratorioEntity.getNombre())));
                 }
                 if (!StringHelper.isEmpty(laboratorioEntity.getDescripcion())) {
-                    predicates.add(criteriaBuilder.equal(personaEntityRoot.get("descripcion"), laboratorioEntity.getDescripcion()));
+                    predicates.add(criteriaBuilder.equal(laboratorioEntityRoot.get("descripcion"), laboratorioEntity.getDescripcion()));
                 }
             }
-            query.select(personaEntityRoot).where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
+            query.select(laboratorioEntityRoot).where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
             return entityManager.createQuery(query).getResultList();
         } catch (Exception exception) {
             throw RepositoryCustomException.createTechnicalException(exception, "Ocurrio un error crenado el query para la consulta customizada");

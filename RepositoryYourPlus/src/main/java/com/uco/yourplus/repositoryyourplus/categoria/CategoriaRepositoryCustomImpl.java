@@ -27,7 +27,7 @@ public class CategoriaRepositoryCustomImpl implements CategoriaRepositoryCustom 
             Root<CategoriaEntity> categoriaEntityRoot = query.from(CategoriaEntity.class);
             List<Predicate> predicates = new ArrayList<>();
 
-            if (Objects.isNull(categoriaEntity)) {
+            if (!Objects.isNull(categoriaEntity)) {
                 if (!StringHelper.isEmpty(categoriaEntity.getNombre())) {
                     predicates.add(criteriaBuilder.equal(categoriaEntityRoot.get("nombre"), categoriaEntity.getNombre()));
                 }
