@@ -2,7 +2,7 @@ package com.uco.yourplus.serviceyourplus.specification.laboratorio.implementatio
 
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.dtoyourplus.LaboratorioDTO;
-import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
+import com.uco.yourplus.repositoryyourplus.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.specification.laboratorio.SpecificationLaboratorio;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
