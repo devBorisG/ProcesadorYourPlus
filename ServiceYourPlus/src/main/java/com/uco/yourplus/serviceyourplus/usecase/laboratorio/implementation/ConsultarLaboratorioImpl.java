@@ -4,7 +4,7 @@ package com.uco.yourplus.serviceyourplus.usecase.laboratorio.implementation;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.repository.RepositoryCustomException;
 import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomException;
 import com.uco.yourplus.entityyourplus.LaboratorioEntity;
-import com.uco.yourplus.repositoryyourplus.laboratorio.LaboratorioRepository;
+import com.uco.yourplus.repositoryyourplus.LaboratorioRepository;
 import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.usecase.laboratorio.ConsultarLaboratorio;
 import org.springframework.beans.BeanUtils;
