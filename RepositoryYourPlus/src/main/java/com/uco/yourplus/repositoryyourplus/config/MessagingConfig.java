@@ -1,5 +1,6 @@
 package com.uco.yourplus.repositoryyourplus.config;
 
+import com.uco.yourplus.crosscuttingyourplus.properties.CategoriaPropertiesCatalogProducer;
 import com.uco.yourplus.crosscuttingyourplus.properties.LaboratorioPropertiesCatalogProducer;
 import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
 import org.springframework.amqp.core.Binding;
@@ -15,13 +16,16 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class})
 public class MessagingConfig {
 
-    private ProductoPropertiesCatalogProducer properties;
-    private LaboratorioPropertiesCatalogProducer labProperties;
+    private final ProductoPropertiesCatalogProducer properties;
+    private final LaboratorioPropertiesCatalogProducer labProperties;
+    private final CategoriaPropertiesCatalogProducer catProperties;
 
     public MessagingConfig(@Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer properties,
-                           @Qualifier("laboratorioPropertiesCatalogProducer") LaboratorioPropertiesCatalogProducer labProperties) {
+                           @Qualifier("laboratorioPropertiesCatalogProducer") LaboratorioPropertiesCatalogProducer labProperties,
+                           @Qualifier("categoriaPropertiesCatalogProducer") CategoriaPropertiesCatalogProducer catProperties) {
         this.properties = properties;
         this.labProperties = labProperties;
+        this.catProperties = catProperties;
     }
 
     //Spring bean for producer save queue
@@ -74,6 +78,22 @@ public class MessagingConfig {
     @Bean
     public Queue listQueueLab(){
         return new Queue(labProperties.getQueue().getList());
+    }
+
+    @Bean
+    public Queue listQueueCat(){
+        return new Queue(catProperties.getQueue().getList());
+    }
+    @Bean
+    public TopicExchange listExchangeCat(){
+        return new TopicExchange(catProperties.getExchange());
+    }
+
+    @Bean
+    public Binding listCatBinding(Queue listQueueCat,TopicExchange listExchangeCat){
+        return BindingBuilder.bind(listExchangeCat)
+                .to(listExchangeCat)
+                .with(catProperties.getRoutingKey().getList());
     }
 
     //Binding between queue save an exchange using routing key
