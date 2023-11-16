@@ -37,7 +37,7 @@ public class RabbitMQListReceiverCategoriaImpl implements RabbitMQListReceiveCat
         this.producer = producer;
     }
 
-    @RabbitListener(queues = "${yourplus.management.categoria.response.queue.list}")
+    @RabbitListener(queues = "${yourplus.management.categoria.queue.list}")
     @Override
     public void execute(CategoriaDomain domain) {
         StateResponse stateResponse = StateResponse.SUCCESS;
