@@ -61,7 +61,7 @@ public class RabbitMQUpdateReceiverLaboratorioImpl implements RabbitMQUpdateRece
         } finally {
             MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
             Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
-            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingKey().getUpdate(),bodyMessage.get());
+            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getUpdate(),bodyMessage.get());
         }
     }
 }

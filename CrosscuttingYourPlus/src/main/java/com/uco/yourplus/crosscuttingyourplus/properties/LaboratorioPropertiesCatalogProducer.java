@@ -9,7 +9,7 @@ public class LaboratorioPropertiesCatalogProducer {
 
     private String exchange;
     private QueueProperties queue = new QueueProperties();
-    private RoutingKeyProperties routingKey = new RoutingKeyProperties();
+    private RoutingKeyProperties routingkey = new RoutingKeyProperties();
 
     public String getExchange() {
         return exchange;
@@ -27,12 +27,12 @@ public class LaboratorioPropertiesCatalogProducer {
         this.queue = queue;
     }
 
-    public RoutingKeyProperties getRoutingKey() {
-        return routingKey;
+    public RoutingKeyProperties getRoutingkey() {
+        return routingkey;
     }
 
-    public void setRoutingKey(RoutingKeyProperties routingKey) {
-        this.routingKey = routingKey;
+    public void setRoutingkey(RoutingKeyProperties routingkey) {
+        this.routingkey = routingkey;
     }
 
     public static class QueueProperties{

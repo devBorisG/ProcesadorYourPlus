@@ -88,7 +88,7 @@ public class RabbitMQSaveReceiverLaboratorioImpl implements RabbitMQSaveReceiver
             responseDomain.setMessage("Ocurrio un error fatal, intente de nuevo en unos minutos");
             bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
         } finally{
-            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingKey().getSave(),bodyMessage.get());
+            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getSave(),bodyMessage.get());
         }
     }
 }

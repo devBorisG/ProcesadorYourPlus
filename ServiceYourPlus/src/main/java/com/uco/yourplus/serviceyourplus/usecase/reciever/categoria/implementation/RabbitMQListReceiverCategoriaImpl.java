@@ -4,11 +4,13 @@ import com.uco.yourplus.crosscuttingyourplus.exceptions.service.ServiceCustomExc
 import com.uco.yourplus.crosscuttingyourplus.helper.json.MapperJsonObject;
 import com.uco.yourplus.crosscuttingyourplus.properties.CategoriaPropertiesCatalogProducer;
 import com.uco.yourplus.serviceyourplus.domain.CategoriaDomain;
+import com.uco.yourplus.serviceyourplus.domain.LaboratorioDomain;
 import com.uco.yourplus.serviceyourplus.domain.ResponseDomain;
 import com.uco.yourplus.serviceyourplus.domain.enumeration.StateResponse;
 import com.uco.yourplus.serviceyourplus.usecase.categoria.ConsultarCategorias;
 import com.uco.yourplus.serviceyourplus.usecase.producer.response.ConfigRabbitContentResponse;
 import com.uco.yourplus.serviceyourplus.usecase.reciever.categoria.RabbitMQListReceiveCategoria;
+import com.uco.yourplus.serviceyourplus.usecase.reciever.producto.implementation.ConfigurateSendResponse;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -28,24 +30,32 @@ public class RabbitMQListReceiverCategoriaImpl implements RabbitMQListReceiveCat
     private final ConfigRabbitContentResponse configRabbitContentResponse;
     private final CategoriaPropertiesCatalogProducer producer;
 
+    private final ConfigurateSendResponse<CategoriaDomain> configurateSendResponse;
+
     public RabbitMQListReceiverCategoriaImpl(ConsultarCategorias useCase, MapperJsonObject mapperJsonObject, RabbitTemplate rabbitTemplate,
-                                             ConfigRabbitContentResponse configRabbitContentResponse, @Qualifier("categoriaPropertiesCatalogProducer") CategoriaPropertiesCatalogProducer producer) {
+                                             ConfigRabbitContentResponse configRabbitContentResponse, @Qualifier("categoriaPropertiesCatalogProducer") CategoriaPropertiesCatalogProducer producer, ConfigurateSendResponse<CategoriaDomain> configurateSendResponse) {
         this.useCase = useCase;
         this.mapperJsonObject = mapperJsonObject;
         this.rabbitTemplate = rabbitTemplate;
         this.configRabbitContentResponse = configRabbitContentResponse;
         this.producer = producer;
+        this.configurateSendResponse = configurateSendResponse;
     }
 
     @RabbitListener(queues = "${yourplus.management.categoria.queue.list}")
     @Override
-    public void execute(CategoriaDomain domain) {
+    public void execute(String message) {
+        ResponseDomain<CategoriaDomain> responseDomain = configurateSendResponse.setIdForMessage(message);
+        MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
         StateResponse stateResponse = StateResponse.SUCCESS;
-        ResponseDomain responseDomain = new ResponseDomain();
+        Optional<Message> bodyMessage = Optional.empty();
         try {
-            useCase.execute(Optional.of(domain));
+            CategoriaDomain domain = mapperJsonObject.execute(message, CategoriaDomain.class).get();
+            List<CategoriaDomain> categoriaDomainList = useCase.execute(Optional.of(domain));
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Lista de categorias");
+            responseDomain.setData(categoriaDomainList);
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (ServiceCustomException exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
@@ -54,13 +64,13 @@ public class RabbitMQListReceiverCategoriaImpl implements RabbitMQListReceiveCat
             } else {
                 responseDomain.setMessage(exception.getMessage());
             }
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } catch (Exception exception) {
             stateResponse = StateResponse.ERROR;
             responseDomain.setStateResponse(stateResponse);
             responseDomain.setMessage("Ocurrió un error fatal, intentalo en unos minutos");
+            bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
         } finally {
-            MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
-            Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain,messageProperties);
             rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingKey().getList(),bodyMessage.get());
         }
     }

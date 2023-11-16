@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class})
+@EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class, CategoriaPropertiesCatalogProducer.class})
 public class MessagingConfig {
 
     private final ProductoPropertiesCatalogProducer properties;
@@ -91,7 +91,7 @@ public class MessagingConfig {
 
     @Bean
     public Binding listCatBinding(Queue listQueueCat,TopicExchange listExchangeCat){
-        return BindingBuilder.bind(listExchangeCat)
+        return BindingBuilder.bind(listQueueCat)
                 .to(listExchangeCat)
                 .with(catProperties.getRoutingKey().getList());
     }
@@ -135,22 +135,22 @@ public class MessagingConfig {
 
     @Bean
     public Binding saveBindingLab(Queue saveQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(saveQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getSave());
+        return BindingBuilder.bind(saveQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getSave());
     }
 
     @Bean
     public Binding deleteBindingLab(Queue deleteQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(deleteQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getDelete());
+        return BindingBuilder.bind(deleteQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getDelete());
     }
 
     @Bean
     public Binding updateBindingLab(Queue updateQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(updateQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getUpdate());
+        return BindingBuilder.bind(updateQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getUpdate());
     }
 
     @Bean
     public Binding listBindingLab(Queue listQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(listQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getList());
+        return BindingBuilder.bind(listQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getList());
     }
 
 }
