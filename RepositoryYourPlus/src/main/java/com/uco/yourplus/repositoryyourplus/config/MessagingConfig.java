@@ -1,5 +1,6 @@
 package com.uco.yourplus.repositoryyourplus.config;
 
+import com.uco.yourplus.crosscuttingyourplus.properties.CategoriaPropertiesCatalogProducer;
 import com.uco.yourplus.crosscuttingyourplus.properties.LaboratorioPropertiesCatalogProducer;
 import com.uco.yourplus.crosscuttingyourplus.properties.ProductoPropertiesCatalogProducer;
 import org.springframework.amqp.core.Binding;
@@ -12,16 +13,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class})
+@EnableConfigurationProperties({ProductoPropertiesCatalogProducer.class, LaboratorioPropertiesCatalogProducer.class, CategoriaPropertiesCatalogProducer.class})
 public class MessagingConfig {
 
-    private ProductoPropertiesCatalogProducer properties;
-    private LaboratorioPropertiesCatalogProducer labProperties;
+    private final ProductoPropertiesCatalogProducer properties;
+    private final LaboratorioPropertiesCatalogProducer labProperties;
+    private final CategoriaPropertiesCatalogProducer catProperties;
 
     public MessagingConfig(@Qualifier("productoPropertiesCatalogProducer") ProductoPropertiesCatalogProducer properties,
-                           @Qualifier("laboratorioPropertiesCatalogProducer") LaboratorioPropertiesCatalogProducer labProperties) {
+                           @Qualifier("laboratorioPropertiesCatalogProducer") LaboratorioPropertiesCatalogProducer labProperties,
+                           @Qualifier("categoriaPropertiesCatalogProducer") CategoriaPropertiesCatalogProducer catProperties) {
         this.properties = properties;
         this.labProperties = labProperties;
+        this.catProperties = catProperties;
     }
 
     //Spring bean for producer save queue
@@ -76,6 +80,22 @@ public class MessagingConfig {
         return new Queue(labProperties.getQueue().getList());
     }
 
+    @Bean
+    public Queue listQueueCat(){
+        return new Queue(catProperties.getQueue().getList());
+    }
+    @Bean
+    public TopicExchange listExchangeCat(){
+        return new TopicExchange(catProperties.getExchange());
+    }
+
+    @Bean
+    public Binding listCatBinding(Queue listQueueCat,TopicExchange listExchangeCat){
+        return BindingBuilder.bind(listQueueCat)
+                .to(listExchangeCat)
+                .with(catProperties.getRoutingKey().getList());
+    }
+
     //Binding between queue save an exchange using routing key
     @Bean
     public Binding saveBinding(Queue saveQueue, TopicExchange exchange) {
@@ -115,22 +135,22 @@ public class MessagingConfig {
 
     @Bean
     public Binding saveBindingLab(Queue saveQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(saveQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getSave());
+        return BindingBuilder.bind(saveQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getSave());
     }
 
     @Bean
     public Binding deleteBindingLab(Queue deleteQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(deleteQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getDelete());
+        return BindingBuilder.bind(deleteQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getDelete());
     }
 
     @Bean
     public Binding updateBindingLab(Queue updateQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(updateQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getUpdate());
+        return BindingBuilder.bind(updateQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getUpdate());
     }
 
     @Bean
     public Binding listBindingLab(Queue listQueueLab, TopicExchange topicExchangeLab){
-        return BindingBuilder.bind(listQueueLab).to(topicExchangeLab).with(labProperties.getRoutingKey().getList());
+        return BindingBuilder.bind(listQueueLab).to(topicExchangeLab).with(labProperties.getRoutingkey().getList());
     }
 
 }

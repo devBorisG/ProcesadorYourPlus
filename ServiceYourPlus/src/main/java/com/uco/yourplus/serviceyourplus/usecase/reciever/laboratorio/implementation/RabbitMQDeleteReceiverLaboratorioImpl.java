@@ -65,7 +65,7 @@ public class RabbitMQDeleteReceiverLaboratorioImpl implements RabbitMQDeleteRece
         } finally {
             MessageProperties messageProperties = configRabbitContentResponse.generateMessageProperties(responseDomain.getId());
             Optional<Message> bodyMessage = configRabbitContentResponse.getBodyMessage(responseDomain, messageProperties);
-            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingKey().getDelete(),bodyMessage.get());
+            rabbitTemplate.convertAndSend(producer.getExchange(),producer.getRoutingkey().getDelete(),bodyMessage.get());
         }
     }
 }
